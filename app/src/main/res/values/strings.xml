@@ -35,4 +35,26 @@
     <string name="kapat">Kapat</string>
     <string name="kelimeyi_dinle">Kelimeyi dinle</string>
     <string name="harfe_dokun">Harfe dokun, sesini dinle</string>
+    <!-- Main.dc.html -->
+    <string name="ana_kuran">Kur’an</string>
+    <string name="ana_hatim">Hatim</string>
+    <string name="ana_hadis">Hadis</string>
+    <string name="ana_ilmihal">İlmihal</string>
+    <string name="ana_namaz">Namaz</string>
+    <string name="ana_vakitler">Vakitler</string>
+    <string name="ana_kible">Kıble</string>
+    <string name="ana_zikirmatik">Zikirmatik</string>
+    <string name="ana_esma">Esmâ</string>
+    <string name="ana_elifba">Elif-Ba</string>
+    <string name="ana_dualar">Dualar</string>
+    <string name="ana_kaza">Kaza</string>
+    <string name="ana_allah">Allah lafzı – hat levhası</string>
+    <string name="ana_muhammed">Muhammed lafzı – hat levhası</string>
+    <string name="ana_sabah">Sabah</string>
+    <string name="ana_ezan_kalan">%1$s ezanına kalan</string>
+    <string name="ana_konum_vakit">%1$s · %2$s %3$s</string>
+    <string name="ana_devam">Kaldığın yerden devam</string>
+    <string name="ana_fatiha">Fâtiha</string>
+    <string name="ana_okuma_konumu">%1$s · Sayfa %2$d · %3$d. âyette kaldın</string>
+    <string name="ana_bolumler">Bölümler</string>
 </resources>
