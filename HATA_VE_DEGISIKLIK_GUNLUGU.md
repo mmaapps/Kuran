@@ -102,3 +102,6 @@ Ezan CI 45881640413 (iş logu: unit test 28s, AAB 13s, artifact 15147089535) ba�
 
 ## 2026-11-26 — Güncelleme derlemesi doğrulandı ve Termux imza betiği
 CI 45882025257 (iş 140123424108) testDebugUnitTest 32s, AAB 14s, evrensel APK başarılı; artifact 15148105714. GitHub kalıcı secret durumu erişim kısıtından doğrulanamadı. Kullanıcı mevcut Termux anahtarının kurulu olduğunu belirtti. scripts/termux-imzala.sh eklendi: başarılı Android CI, kaynak sürüm kodu ve APK imza doğrulaması; mevcut anahtara dokunulmaz, GitHub'a anahtar/şifre gönderilmez. Betik gerçek Termux'ta çalıştırılmadı; imzalı test APK ve cihaz güncelleme doğrulaması bekliyor. Kararlı release yok.
+
+## 2026-11-26 — Normal release adayı derleme hattı
+Kullanıcı kurulumu tamamladığını bildirdi; cihaz sertifikası ve kurulu sürüm uzaktan doğrulanmadı. GitHub'da yayımlanmış Release yok. Ayrı release adayı CI ve mevcut Termux anahtarıyla yerel imzalama betiği eklendi; gerçek kalıcı anahtar CI'ya aktarılmaz. Debug ve release adayları ayrıldı, release adayında paket/sürüm, debug bayrağı, commit ve SHA-256 denetimleri bulunuyor. Yeni CI bekliyor; otomatik yayın yok. Uygulama versionCode 2 olarak korundu; sonraki kullanıcıya sunulan OTA sürümü en az 3 olmalı. Şehir verisi, izinli sesler ve diğer ekranlar bekliyor.

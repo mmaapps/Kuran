@@ -13,3 +13,6 @@ Otomatik kontrol uygulama açıldığında başarılı kontrolden sonra 24 saat 
 
 ## Termux: mevcut anahtarla tek komutlu test imzası
 `scripts/termux-imzala.sh <Android derleme run ID> <versionCode>` başarılı Android iş akışının APK'sını indirir, kaynak commit'indeki versionCode'u karşılaştırır, mevcut PKCS12 anahtarıyla yerelde imzalar, apksigner doğrulaması ve SHA-256 çıktısını verir. Şifre yalnız Termux terminalinde girilir; anahtar GitHub'a yüklenmez. Debug tabanlı imzalı test APK kararlı yayın değildir.
+
+## Normal release derleme hattı
+Actions > Kararlı APK adayı, release AAB ve evrensel APK üretir; debug bayrağının olmadığını, paket adı/sürümünü, imzalanabilirliği ve SHA-256'yı denetler. CI geçici sertifikası dağıtım imzası değildir. `scripts/termux-release-imzala.sh RUN_ID` aynı kalıcı anahtar ile yerel release adayını imzalar. Aday, kararlı Release olarak otomatik yayımlanmaz. İmzalı adayın cihazda önceki sürümün üzerine kurulması, içerik ve lisans kontrolleri tamamlandıktan sonra yalnız KuranKerim-<versionCode>.apk dosyası vX.Y.Z etiketli yayına yüklenebilir. İlk güncellemeli 1.0.1 (2) kuruluysa bir sonraki OTA sürüm kodu en az 3 olmalıdır. İlk kurulum tekrarlanmaz.
