@@ -38,3 +38,7 @@ DÜZELTİLDİ: 05_ANDROID_PROJE içeriği depoya aktarılıyor. İlk GitHub Acti
 ## 2026-11-26 — İlk CI (45847393301, 499d9f8)
 HATA: AAB derlemesinde Gradle classpath bağımlılıkları Maven Central HTTP 429 (Too Many Requests) nedeniyle indirilemedi. Kotlin derlemesine ulaşılamadı. Örnek: org.jetbrains.kotlin:kotlin-reflect:2.0.20.
 NOT: Başarısız iş yeniden başlatıldı. Bağımlılık sürümleri ve tasarım değiştirilmedi. Sonuç doğrulanınca kayıt güncellenecek.
+
+DÜZELTİLDİ: İkinci denemede Maven bağımlılıkları çözüldü; :app:bundleDebug BUILD SUCCESSFUL (42 işlem, 2m 23s).
+HATA: Bundletool, /home/runner/.android/debug.keystore bulunamadığı için evrensel APK üretemedi (iş 140025369968). AAB oluşturuldu ancak artifact yükleme adımı atlandı.
+NOT: CI üzerinde yalnız debug amaçlı geçici imzalama anahtarı oluşturulması gerekiyor; üretim imzası kullanılmayacak. Tam CI başarısı henüz doğrulanmadı.
