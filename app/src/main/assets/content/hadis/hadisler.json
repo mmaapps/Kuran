@@ -1,0 +1,63 @@
+{
+  "_aciklama": "Hadisler. Türkçe metinler uygulama ekibinin tercümesidir; ilahiyatçı kontrolünden önce YAYINLANMAZ. Kaynak numaraları kontrolde doğrulanacak. 'arapca' boşsa ekranda sadece Türkçe gösterilir. Bu dosyaya yapay zekâyla hadis EKLENMEZ.",
+  "kontrol": { "durum": "bekliyor", "kontrol_eden": "", "tarih": "" },
+  "gunun_hadisi_sirasi": ["h001", "h002", "h003", "h004", "h005", "h006", "h007"],
+  "hadisler": [
+    {
+      "id": "h001",
+      "kategori": "İman",
+      "arapca": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ",
+      "turkce": "Ameller ancak niyetlere göredir. Herkese ancak niyet ettiği şey vardır.",
+      "kaynak": "Buhârî, 1 · Müslim, 1907",
+      "derece": "Sahih"
+    },
+    {
+      "id": "h002",
+      "kategori": "İman",
+      "arapca": "",
+      "turkce": "Sizden biriniz, kendisi için istediğini kardeşi için de istemedikçe (gerçek anlamda) iman etmiş olmaz.",
+      "kaynak": "Buhârî, 13 · Müslim, 45",
+      "derece": "Sahih"
+    },
+    {
+      "id": "h003",
+      "kategori": "Ahlak",
+      "arapca": "",
+      "turkce": "Allah'a ve âhiret gününe iman eden ya hayır söylesin ya da sussun.",
+      "kaynak": "Buhârî, 6018 · Müslim, 47",
+      "derece": "Sahih"
+    },
+    {
+      "id": "h004",
+      "kategori": "Ahlak",
+      "arapca": "",
+      "turkce": "Kolaylaştırın, zorlaştırmayın; müjdeleyin, nefret ettirmeyin.",
+      "kaynak": "Buhârî, 69 · Müslim, 1734",
+      "derece": "Sahih"
+    },
+    {
+      "id": "h005",
+      "kategori": "Ahlak",
+      "arapca": "",
+      "turkce": "Müslüman, elinden ve dilinden Müslümanların güvende olduğu kimsedir.",
+      "kaynak": "Buhârî, 10 · Müslim, 40",
+      "derece": "Sahih"
+    },
+    {
+      "id": "h006",
+      "kategori": "İbadet",
+      "arapca": "",
+      "turkce": "Beş vakit namaz, bir cuma diğer cumaya kadar ve bir ramazan diğer ramazana kadar, büyük günahlardan kaçınıldıkça aralarında işlenen günahlara kefarettir.",
+      "kaynak": "Müslim, 233",
+      "derece": "Sahih"
+    },
+    {
+      "id": "h007",
+      "kategori": "Aile",
+      "arapca": "",
+      "turkce": "Sizin en hayırlınız, ailesine karşı en hayırlı olanınızdır.",
+      "kaynak": "Tirmizî, 3895",
+      "derece": "Hasen-Sahih"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "_aciklama": "İki rekâtlık namaz adımları (Namaz.dc.html, Namaz sekmesi). Figürler yüzsüzdür. İlahiyatçı kontrolü bekliyor.",
+  "kontrol": { "durum": "bekliyor", "kontrol_eden": "", "tarih": "" },
+  "adimlar": [
+    { "no": 1, "cizim": "n1", "baslik": "Niyet", "hukum": "Şart", "aciklama": "Kıbleye dönülür, kılınacak namaza kalben niyet edilir.", "gorsel": "Kıbleye dönük, niyet", "arapca": "", "okunus": "" },
+    { "no": 2, "cizim": "n2", "baslik": "İftitah tekbiri", "hukum": "Farz", "aciklama": "Eller kulak hizasına kaldırılır ve \"Allâhu ekber\" denir.", "gorsel": "Tekbir", "arapca": "ٱللَّهُ أَكْبَرُ", "okunus": "Allâhu ekber" },
+    { "no": 3, "cizim": "n3", "baslik": "Kıyam ve kıraat", "hukum": "Farz", "aciklama": "Eller bağlanır; Sübhâneke, Eûzü-Besmele, Fâtiha ve bir sûre okunur.", "gorsel": "Kıyam, eller bağlı", "arapca": "", "okunus": "" },
+    { "no": 4, "cizim": "n4", "baslik": "Rükû", "hukum": "Farz", "aciklama": "Tekbirle eğilinir, eller dizlere konur ve üç kez tesbih edilir.", "gorsel": "Rükû", "arapca": "سُبْحَانَ رَبِّيَ ٱلْعَظِيمِ", "okunus": "Sübhâne rabbiye'l-azîm" },
+    { "no": 5, "cizim": "n5", "baslik": "Kavme", "hukum": "Vâcip", "aciklama": "Rükûdan doğrulurken bu söylenir, ayakta \"Rabbenâ leke'l-hamd\" denir.", "gorsel": "Rükûdan doğrulma", "arapca": "سَمِعَ ٱللَّهُ لِمَنْ حَمِدَهُ", "okunus": "Semiallâhu limen hamideh" },
+    { "no": 6, "cizim": "n6", "baslik": "Secde", "hukum": "Farz", "aciklama": "Tekbirle secdeye varılır, üç kez tesbih edilir.", "gorsel": "Secde", "arapca": "سُبْحَانَ رَبِّيَ ٱلْأَعْلَى", "okunus": "Sübhâne rabbiye'l-a'lâ" },
+    { "no": 7, "cizim": "n7", "baslik": "Celse ve ikinci secde", "hukum": "Vâcip", "aciklama": "Secdeden doğrulup kısa bir süre oturulur, ardından ikinci secde yapılır.", "gorsel": "İki secde arası oturuş", "arapca": "", "okunus": "" },
+    { "no": 8, "cizim": "n8", "baslik": "İkinci rekât", "hukum": "", "aciklama": "Ayağa kalkılır; Besmele, Fâtiha ve bir sûre okunur, rükû ve secdeler yapılır.", "gorsel": "İkinci rekâta kalkış", "arapca": "", "okunus": "" },
+    { "no": 9, "cizim": "n9", "baslik": "Son oturuş", "hukum": "Farz", "aciklama": "Oturulur; Ettehiyyâtü, Allâhümme salli, Allâhümme bârik ve Rabbenâ duaları okunur.", "gorsel": "Ka'de-i ahîre", "arapca": "", "okunus": "" },
+    { "no": 10, "cizim": "n10", "baslik": "Selâm", "hukum": "Vâcip", "aciklama": "Baş önce sağa, sonra sola çevrilerek selâm verilir. Namaz tamamlandı.", "gorsel": "Sağa ve sola selâm", "arapca": "ٱلسَّلَامُ عَلَيْكُمْ وَرَحْمَةُ ٱللَّهِ", "okunus": "Esselâmu aleyküm ve rahmetullâh" }
+  ]
+}

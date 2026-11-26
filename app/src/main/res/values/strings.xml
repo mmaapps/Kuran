@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kur\'an-ı Kerim</string>
+
+    <!-- Bildirim kanalları -->
+    <string name="kanal_ezan">Ezan</string>
+    <string name="kanal_ezan_aciklama">Ezan vaktinde ezan sesi</string>
+    <string name="kanal_hatirlatma">Ezan hatırlatması</string>
+    <string name="kanal_hatirlatma_aciklama">Ezana 5 dakika kala hatırlatma</string>
+    <string name="kanal_geri_sayim">Sıradaki ezana geri sayım</string>
+    <string name="kanal_geri_sayim_aciklama">Bildirim çubuğunda sürekli geri sayım</string>
+
+    <!-- Bildirim metinleri (tasarım: Bildirim.dc.html) -->
+    <string name="hatirlatma_baslik">%1$s ezanına 5 dakika kaldı</string>
+    <string name="hatirlatma_metin">Abdest almak için güzel bir zaman.</string>
+    <string name="ezan_okunuyor">%1$s ezanı okunuyor</string>
+    <string name="ezan_sustur">Sustur</string>
+    <string name="geri_sayim_baslik">Sıradaki: %1$s · %2$s</string>
+
+    <!-- Vakit adları -->
+    <string name="vakit_imsak">İmsak</string>
+    <string name="vakit_gunes">Güneş</string>
+    <string name="vakit_ogle">Öğle</string>
+    <string name="vakit_ikindi">İkindi</string>
+    <string name="vakit_aksam">Akşam</string>
+    <string name="vakit_yatsi">Yatsı</string>
+
+    <string name="bos_durum">Bu içerik henüz eklenmedi.</string>
+</resources>

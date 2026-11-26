@@ -1,0 +1,25 @@
+TANZIL QURAN TEXT — ATIF METNİ
+==============================
+
+Uygulamada (Hakkında > İçerik kaynakları) ve mağaza açıklamasında kullanılacak metin:
+
+  Kur'an-ı Kerim Arapça metni: Tanzil Project (https://tanzil.net)
+  Lisans: Creative Commons Attribution 3.0
+  Metin, Tanzil'den alındığı haliyle, hiçbir değişiklik yapılmadan kullanılmıştır.
+
+Tanzil'in kullanım şartları (özet):
+  - Metnin birebir kopyaları çoğaltılabilir ve dağıtılabilir; METİN DEĞİŞTİRİLEMEZ.
+  - Herhangi bir web sitesinde veya uygulamada kullanılabilir; kaynağın (Tanzil Project)
+    açıkça belirtilmesi ve kullanıcıların değişiklikleri takip edebilmesi için tanzil.net'e
+    link verilmesi şarttır.
+
+ÖNEMLİ:
+  - İndirdiğiniz Tanzil dosyasının en altındaki lisans başlığını (yorum satırları) SİLMEYİN;
+    dosya uygulamaya bu başlıkla birlikte konur.
+  - Tanzil'in ÇEVİRİLERİ (tr.yazir, tr.diyanet vb.) bu lisansa dahil DEĞİLDİR;
+    çeviriler yalnızca ticari olmayan kullanım içindir, başka kullanım için çevirmen/yayıncı izni gerekir.
+    Bu uygulamada Tanzil çevirileri KULLANILMAZ.
+
+İndirme: https://tanzil.net/download/
+  Seçim: Quran Type = Uthmani, Output = Text (with aya numbers) veya XML
+  Dosya yolu (proje): app/src/main/assets/content/quran/quran-uthmani.xml

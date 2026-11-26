@@ -31,3 +31,6 @@ NOT: KFGQPC yazı tipi eklenince `ui/theme/Yazi.kt` içindeki `MushafYazi` satı
 ## 2026-11-26 — GitHub aktarımı
 HATA: ZIP dosyasının doğrudan git ile aktarımı sırasında "Could not resolve host: github.com" hatası alındı.
 NOT: GitHub bağlantısı üzerinden özgün .gitignore ve bu günlük eklendi. Android kaynakları ve ilk CI henüz aktarılmadı. Tasarım ve telif belgeleri değiştirilmedi.
+
+## 2026-11-26 — Android proje aktarımı
+DÜZELTİLDİ: 05_ANDROID_PROJE içeriği depoya aktarılıyor. İlk GitHub Actions derlemesinin sonucu henüz doğrulanmadı.

@@ -1,0 +1,18 @@
+{
+  "_aciklama": "Abdest adımları (Namaz.dc.html, Abdest sekmesi). 'cizim' = Namaz.dc.html'deki SVG çizim kimliği. İlahiyatçı kontrolü bekliyor.",
+  "kontrol": { "durum": "bekliyor", "kontrol_eden": "", "tarih": "" },
+  "adimlar": [
+    { "no": 1, "cizim": "a1", "baslik": "Niyet ve Besmele", "hukum": "Sünnet", "aciklama": "\"Niyet ettim Allah rızası için abdest almaya\" diye niyet edilir ve Besmele çekilir.", "gorsel": "Niyet ve Besmele", "arapca": "بِسْمِ ٱللَّهِ", "okunus": "Bismillâhirrahmânirrahîm" },
+    { "no": 2, "cizim": "a2", "baslik": "Elleri yıkamak", "hukum": "Sünnet", "aciklama": "Eller bileklere kadar üç kez yıkanır, parmak araları ovulur.", "gorsel": "Eller bileklere kadar · 3 kez", "arapca": "", "okunus": "" },
+    { "no": 3, "cizim": "a3", "baslik": "Ağza su vermek", "hukum": "Sünnet", "aciklama": "Sağ elle ağza üç kez su alınıp iyice çalkalanır.", "gorsel": "Ağza su · 3 kez", "arapca": "", "okunus": "" },
+    { "no": 4, "cizim": "a4", "baslik": "Buruna su vermek", "hukum": "Sünnet", "aciklama": "Sağ elle buruna üç kez su çekilir, sol elle temizlenir.", "gorsel": "Buruna su · 3 kez", "arapca": "", "okunus": "" },
+    { "no": 5, "cizim": "a5", "baslik": "Yüzü yıkamak", "hukum": "Farz", "aciklama": "Alnın üstünden çene altına, iki kulak yumuşağına kadar yüz üç kez yıkanır.", "gorsel": "Alından çene altına · 3 kez", "arapca": "", "okunus": "" },
+    { "no": 6, "cizim": "a6", "baslik": "Sağ kolu yıkamak", "hukum": "Farz", "aciklama": "Sağ kol, dirsekle birlikte üç kez yıkanır.", "gorsel": "Sağ kol, dirsek dahil · 3 kez", "arapca": "", "okunus": "" },
+    { "no": 7, "cizim": "a7", "baslik": "Sol kolu yıkamak", "hukum": "Farz", "aciklama": "Sol kol, dirsekle birlikte üç kez yıkanır.", "gorsel": "Sol kol, dirsek dahil · 3 kez", "arapca": "", "okunus": "" },
+    { "no": 8, "cizim": "a8", "baslik": "Başı meshetmek", "hukum": "Farz", "aciklama": "Eller ıslatılır, başın en az dörtte biri meshedilir.", "gorsel": "Başın en az dörtte biri", "arapca": "", "okunus": "" },
+    { "no": 9, "cizim": "a9", "baslik": "Kulakları meshetmek", "hukum": "Sünnet", "aciklama": "Şehadet parmaklarıyla kulakların içi, başparmaklarla arkası meshedilir.", "gorsel": "Kulakların içi ve arkası", "arapca": "", "okunus": "" },
+    { "no": 10, "cizim": "a10", "baslik": "Boynu meshetmek", "hukum": "Edep", "aciklama": "Üç parmağın dışıyla ense ve boyun meshedilir.", "gorsel": "Ense ve boyun", "arapca": "", "okunus": "" },
+    { "no": 11, "cizim": "a11", "baslik": "Sağ ayağı yıkamak", "hukum": "Farz", "aciklama": "Topukla birlikte üç kez yıkanır; parmak araları serçe parmakla hilallenir.", "gorsel": "Sağ ayak, topuk dahil · 3 kez", "arapca": "", "okunus": "" },
+    { "no": 12, "cizim": "a12", "baslik": "Sol ayağı yıkamak", "hukum": "Farz", "aciklama": "Sol ayak da topukla birlikte üç kez yıkanır. Abdest tamamlandı.", "gorsel": "Sol ayak, topuk dahil · 3 kez", "arapca": "", "okunus": "" }
+  ]
+}

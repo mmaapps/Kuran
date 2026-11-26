@@ -1,0 +1,40 @@
+{
+  "_aciklama": "İslam'ı Öğrenelim (Ilmihal.dc.html). Maddeler ekibin cümleleridir; kitaplardan paragraf kopyalanmaz. Boş 'maddeler' olan bölümler içerik ekibi tarafından doldurulacak; o zamana kadar BosDurum gösterilir.",
+  "kontrol": { "durum": "bekliyor", "kontrol_eden": "", "tarih": "" },
+  "bolumler": [
+    {
+      "id": "iman",
+      "baslik": "İmanın Şartları",
+      "alt_baslik": "Âmentü · 6 şart",
+      "maddeler": [
+        "Allah'a iman",
+        "Meleklere iman",
+        "Kitaplara iman",
+        "Peygamberlere iman",
+        "Âhiret gününe iman",
+        "Kadere; hayır ve şerrin Allah'tan olduğuna iman"
+      ]
+    },
+    {
+      "id": "islam",
+      "baslik": "İslam'ın Şartları",
+      "alt_baslik": "5 şart",
+      "maddeler": [
+        "Kelime-i şehâdet getirmek",
+        "Namaz kılmak",
+        "Oruç tutmak",
+        "Zekât vermek",
+        "Gücü yetenin hacca gitmesi"
+      ]
+    },
+    { "id": "abdest_farz", "baslik": "Abdestin farzları", "alt_baslik": "4", "maddeler": [] },
+    { "id": "gusul_farz", "baslik": "Guslün farzları", "alt_baslik": "3", "maddeler": [] },
+    { "id": "teyemmum", "baslik": "Teyemmüm", "alt_baslik": "", "maddeler": [] },
+    { "id": "namaz_farz", "baslik": "Namazın farzları", "alt_baslik": "12", "maddeler": [] },
+    { "id": "oruc", "baslik": "Oruç", "alt_baslik": "", "maddeler": [] },
+    { "id": "zekat", "baslik": "Zekât", "alt_baslik": "", "maddeler": [] },
+    { "id": "hac", "baslik": "Hac ve umre", "alt_baslik": "", "maddeler": [] },
+    { "id": "esma", "baslik": "Esmâü'l-Hüsnâ", "alt_baslik": "99 isim", "maddeler": [] },
+    { "id": "siyer", "baslik": "Peygamberimizin hayatı", "alt_baslik": "", "maddeler": [] }
+  ]
+}

@@ -1,0 +1,43 @@
+name: Android derleme
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  derle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+
+      # App Bundle (Play'e yüklenecek biçim, tilâvet paketi dahil)
+      - name: AAB derle
+        run: gradle :app:bundleDebug --stacktrace
+
+      # Telefonda denemek için: tilâvet paketini de içeren tek APK
+      - name: Evrensel APK üret (bundletool)
+        run: |
+          curl -sSL -o bundletool.jar https://github.com/google/bundletool/releases/download/1.17.2/bundletool-all-1.17.2.jar
+          java -jar bundletool.jar build-apks \
+            --bundle=app/build/outputs/bundle/debug/app-debug.aab \
+            --output=kurankerim.apks --mode=universal \
+            --ks=$HOME/.android/debug.keystore --ks-pass=pass:android \
+            --ks-key-alias=androiddebugkey --key-pass=pass:android
+          unzip -o kurankerim.apks universal.apk
+          mv universal.apk KuranKerim-debug.apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KuranKerim-debug
+          path: |
+            KuranKerim-debug.apk
+            app/build/outputs/bundle/debug/app-debug.aab

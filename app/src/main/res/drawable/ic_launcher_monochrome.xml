@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Temalı (tek renk) simge, Android 13+. Ayrıca bildirim küçük simgesi olarak kullanılır. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="54"
+        android:translateY="54"
+        android:scaleX="0.205"
+        android:scaleY="0.205">
+        <path
+            android:pathData="M-110,-110 h220 v220 h-220 Z"
+            android:strokeColor="#FFFFFFFF"
+            android:strokeWidth="14"
+            android:strokeLineJoin="round" />
+        <group android:rotation="45">
+            <path
+                android:pathData="M-110,-110 h220 v220 h-220 Z"
+                android:strokeColor="#FFFFFFFF"
+                android:strokeWidth="14"
+                android:strokeLineJoin="round" />
+        </group>
+        <group android:translateY="-8">
+            <path
+                android:pathData="M-46,4 L46,62 M46,4 L-46,62"
+                android:strokeColor="#FFFFFFFF"
+                android:strokeWidth="14"
+                android:strokeLineCap="round" />
+            <path
+                android:fillColor="#FFFFFFFF"
+                android:pathData="M0,-36 C-20,-48 -46,-50 -68,-42 L-68,16 C-46,9 -20,11 0,22 Z M0,-36 C20,-48 46,-50 68,-42 L68,16 C46,9 20,11 0,22 Z" />
+        </group>
+    </group>
+</vector>

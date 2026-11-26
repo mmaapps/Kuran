@@ -1,0 +1,18 @@
+{
+  "_aciklama": "Esmâü'l-Hüsnâ — Tirmizî rivayetindeki sıra. İlk 12 isim tasarımdan; kalan 87 isim içerik ekibi tarafından eklenecek ve ilahiyatçı kontrolünden geçecek. Codex isim EKLEMEZ.",
+  "kontrol": { "durum": "bekliyor", "kontrol_eden": "", "tarih": "" },
+  "isimler": [
+    { "no": 1, "arapca": "ٱللَّه", "okunus": "Allah", "anlam": "Bütün isimlerin sahibi, eşi benzeri olmayan tek ilah" },
+    { "no": 2, "arapca": "ٱلرَّحْمَٰن", "okunus": "Er-Rahmân", "anlam": "Dünyada bütün yarattıklarına merhamet eden" },
+    { "no": 3, "arapca": "ٱلرَّحِيم", "okunus": "Er-Rahîm", "anlam": "Âhirette müminlere sonsuz merhamet eden" },
+    { "no": 4, "arapca": "ٱلْمَلِك", "okunus": "El-Melik", "anlam": "Mülkün ve kâinatın gerçek sahibi" },
+    { "no": 5, "arapca": "ٱلْقُدُّوس", "okunus": "El-Kuddûs", "anlam": "Her türlü eksiklikten uzak, tertemiz" },
+    { "no": 6, "arapca": "ٱلسَّلَام", "okunus": "Es-Selâm", "anlam": "Kullarına esenlik veren" },
+    { "no": 7, "arapca": "ٱلْمُؤْمِن", "okunus": "El-Mü'min", "anlam": "Güven veren, gönüllere iman nuru veren" },
+    { "no": 8, "arapca": "ٱلْمُهَيْمِن", "okunus": "El-Müheymin", "anlam": "Her şeyi gözetip koruyan" },
+    { "no": 9, "arapca": "ٱلْعَزِيز", "okunus": "El-Azîz", "anlam": "Mağlup edilmesi imkânsız, üstün ve güçlü" },
+    { "no": 10, "arapca": "ٱلْجَبَّار", "okunus": "El-Cebbâr", "anlam": "Dilediğini yaptırmaya gücü yeten" },
+    { "no": 11, "arapca": "ٱلْمُتَكَبِّر", "okunus": "El-Mütekebbir", "anlam": "Büyüklükte eşi olmayan" },
+    { "no": 12, "arapca": "ٱلْخَالِق", "okunus": "El-Hâlık", "anlam": "Her şeyi yoktan yaratan" }
+  ]
+}

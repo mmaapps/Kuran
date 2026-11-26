@@ -1,0 +1,10 @@
+{
+  "_aciklama": "Ezandan sonra okunacak kısa âyetler — SADECE sûre ve âyet numarası. Arapçası quran-uthmani.xml'den okunur, tilâveti quran_audio paketinden çalınır. Uygulamada meal yoktur. Liste her ezanda sırayla döner. İlahiyatçı listeyi onaylayacak/genişletecek.",
+  "kontrol": { "durum": "bekliyor", "kontrol_eden": "", "tarih": "" },
+  "liste": [
+    { "sure": 94, "ayetler": [5, 6] },
+    { "sure": 13, "ayetler": [28] },
+    { "sure": 2, "ayetler": [152] },
+    { "sure": 65, "ayetler": [3] }
+  ]
+}
