@@ -57,4 +57,16 @@
     <string name="ana_fatiha">Fâtiha</string>
     <string name="ana_okuma_konumu">%1$s · Sayfa %2$d · %3$d. âyette kaldın</string>
     <string name="ana_bolumler">Bölümler</string>
+    <!-- Mushaf.dc.html -->
+    <string name="mushaf_geri">Geri</string>
+    <string name="mushaf_sure">%1$s Sûresi</string>
+    <string name="mushaf_cuz_sayfa">Cüz %1$d · Sayfa %2$d / 604</string>
+    <string name="mushaf_im">Yer imi</string>
+    <string name="mushaf_im_kayitli">Yer imi (kayıtlı)</string>
+    <string name="mushaf_tur_ayet">%1$s · %2$d ÂYET</string>
+    <string name="mushaf_mekki">MEKKÎ</string>
+    <string name="mushaf_medeni">MEDENÎ</string>
+    <string name="mushaf_kaydedildi">Kaldığın yer otomatik kaydedildi</string>
+    <string name="mushaf_tilavet">Sesli tilâvet · %1$d. âyet</string>
+    <string name="mushaf_ses_yok">Bu içerik henüz eklenmedi.</string>
 </resources>

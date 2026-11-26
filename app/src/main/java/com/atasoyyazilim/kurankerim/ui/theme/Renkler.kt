@@ -16,6 +16,7 @@ object Renk {
     val AltinMetin = Color(0xFF7A5C14)
     val Krem = Color(0xFFFBF6EA)
     val Kagit = Color(0xFFFFFBF0)
+    val MushafIcCerceve = Color(0xFFD9C28A) // Mushaf.dc.html
     val MushafZemin = Color(0xFFEFE5CC)
     val Kenar = Color(0xFFEDE5D1)
     val Cizgi = Color(0xFFE7DFCB)

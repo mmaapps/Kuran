@@ -78,6 +78,7 @@ fun KelimeAltSayfasi(
                 Icon(KapatIkon, stringResource(R.string.kapat), tint = Renk.Metin, modifier = Modifier.size(18.dp))
             }
         }
+        if (kelimeSesiHazir) {
         Spacer(Modifier.height(8.dp))
         Row(Modifier.fillMaxWidth().height(44.dp).clip(RoundedCornerShape(12.dp))
             .background(Renk.YesilKoyu).clickable(enabled = kelimeSesiHazir, role = Role.Button, onClick = kelimeyiDinle),
@@ -87,8 +88,9 @@ fun KelimeAltSayfasi(
             Text(stringResource(R.string.kelimeyi_dinle), color = Renk.Beyaz,
                 fontFamily = Manrope, fontSize = 14.sp, fontWeight = FontWeight.ExtraBold)
         }
+        }
         Spacer(Modifier.height(10.dp))
-        Text(stringResource(R.string.harfe_dokun), color = Renk.MetinIkincil, fontFamily = Manrope,
+        if (harfler.any { it.sesHazir }) Text(stringResource(R.string.harfe_dokun), color = Renk.MetinIkincil, fontFamily = Manrope,
             fontSize = 12.sp, fontWeight = FontWeight.Bold)
         Spacer(Modifier.height(6.dp))
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {

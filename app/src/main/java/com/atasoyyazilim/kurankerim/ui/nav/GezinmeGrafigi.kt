@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.atasoyyazilim.kurankerim.ui.ekranlar.TasarimBekleyenEkran
 import com.atasoyyazilim.kurankerim.ui.ekranlar.AnaSayfaEkrani
+import com.atasoyyazilim.kurankerim.ui.ekranlar.MushafEkrani
 
 /**
  * Gezinme. Codex her ekranı yazdıkça ilgili satırdaki TasarimBekleyenEkran'ı gerçek ekranla değiştirir,
@@ -19,6 +20,8 @@ fun GezinmeGrafigi(navController: NavHostController = rememberNavController()) {
             composable(ekran.rota) {
                 if (ekran == Ekran.ANA) {
                     AnaSayfaEkrani(git = { hedef -> navController.navigate(hedef.rota) { launchSingleTop = true } })
+                } else if (ekran == Ekran.MUSHAF) {
+                    MushafEkrani(geri = { navController.popBackStack() })
                 } else TasarimBekleyenEkran(
                     ekran = ekran,
                     git = { hedef -> navController.navigate(hedef.rota) { launchSingleTop = true } },

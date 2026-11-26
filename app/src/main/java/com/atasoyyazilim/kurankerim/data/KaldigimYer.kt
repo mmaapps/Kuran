@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -27,6 +28,8 @@ data class TilavetKonumu(val sure: Int = 1, val ayet: Int = 1, val ms: Long = 0L
 class KaldigimYer(private val context: Context) {
 
     private object Anahtar {
+        val mushafIm = stringSetPreferencesKey("mushaf_yer_imleri")
+        val mushafBoyut = intPreferencesKey("mushaf_yazi_boyutu")
         val mushafSayfa = intPreferencesKey("mushaf_sayfa")
         val mushafSure = intPreferencesKey("mushaf_sure")
         val mushafAyet = intPreferencesKey("mushaf_ayet")
@@ -41,6 +44,22 @@ class KaldigimYer(private val context: Context) {
             sure = p[Anahtar.mushafSure] ?: 1,
             ayet = p[Anahtar.mushafAyet] ?: 1
         )
+    }
+
+    val mushafYerImleri: Flow<Set<String>> = context.kaldigimYerDeposu.data.map { it[Anahtar.mushafIm] ?: emptySet() }
+    val mushafYaziBoyutu: Flow<Int> = context.kaldigimYerDeposu.data.map { (it[Anahtar.mushafBoyut] ?: 28).coerceIn(22,40) }
+
+    suspend fun mushafYerImiDegistir(sayfa: Int) {
+        require(sayfa in 1..604)
+        context.kaldigimYerDeposu.edit {
+            val once = it[Anahtar.mushafIm] ?: emptySet()
+            val id = sayfa.toString()
+            it[Anahtar.mushafIm] = if (id in once) once - id else once + id
+        }
+    }
+
+    suspend fun mushafYaziBoyutuKaydet(boyut: Int) {
+        context.kaldigimYerDeposu.edit { it[Anahtar.mushafBoyut] = boyut.coerceIn(22,40) }
     }
 
     val tilavet: Flow<TilavetKonumu> = context.kaldigimYerDeposu.data.map { p ->
