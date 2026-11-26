@@ -30,6 +30,8 @@ object Renk {
     val OkunanAyet = Color(0xFFF5E8C4)
     val Su = Color(0xFF8ED1E6)
     val Basari = Color(0xFF7FD6A8)
+    // Namaz.dc.html: segment kontrolünün özgün zemin rengi.
+    val SegmentZemin = Color(0xFFEFE6D0)
     val Beyaz = Color(0xFFFFFFFF)
 }
 

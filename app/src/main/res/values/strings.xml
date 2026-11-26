@@ -26,4 +26,9 @@
     <string name="vakit_yatsi">Yatsı</string>
 
     <string name="bos_durum">Bu içerik henüz eklenmedi.</string>
+    <!-- Mushaf.dc.html: oynatıcı erişilebilirlik etiketleri -->
+    <string name="onceki_ayet">Önceki âyet</string>
+    <string name="sonraki_ayet">Sonraki âyet</string>
+    <string name="oynat">Oynat</string>
+    <string name="duraklat">Duraklat</string>
 </resources>
