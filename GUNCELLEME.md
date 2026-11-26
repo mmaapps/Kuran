@@ -10,3 +10,6 @@ Otomatik kontrol uygulama açıldığında başarılı kontrolden sonra 24 saat 
 - APK'yı mevcut kurankerim.p12 ile imzala; apksigner verify --verbose --print-certs ile kontrol et. Uygulamada kurulu imza farklıysa Android yükseltme yapamaz. Veri kaybına neden olacak kaldırma önermeyin.
 - GitHub Actions debug artifact'i kararlı release olarak yayımlanmaz. Release öncesi gerçek cihaz testi gerekir.
 - Ayarlar ekranı tamamlanınca mevcut güncelleme kontrolü düğmesini özgün tasarıma taşı.
+
+## Termux: mevcut anahtarla tek komutlu test imzası
+`scripts/termux-imzala.sh <Android derleme run ID> <versionCode>` başarılı Android iş akışının APK'sını indirir, kaynak commit'indeki versionCode'u karşılaştırır, mevcut PKCS12 anahtarıyla yerelde imzalar, apksigner doğrulaması ve SHA-256 çıktısını verir. Şifre yalnız Termux terminalinde girilir; anahtar GitHub'a yüklenmez. Debug tabanlı imzalı test APK kararlı yayın değildir.
