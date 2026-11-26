@@ -11,29 +11,25 @@ jobs:
   kaynak:
     runs-on: ubuntu-latest
     steps:
-      - name: HAFS Ver18 resmî arşiv adresini kontrol et
+      - name: Resmî Mushaf Publisher 3.16 paketini doğrula ve incele
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/kfgqpc"
-          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 2 --max-time 120 \
-            --write-out '%{url_effective}\n' \
-            'https://fonts.qurancomplex.gov.sa/wp02/wp-content/uploads/2021/08/UthmanicHafs1_Ver18.zip' \
-            -o "$RUNNER_TEMP/kfgqpc/Hafs.zip" > "$RUNNER_TEMP/kfgqpc/source.txt"
+          p="$RUNNER_TEMP/kfgqpc"
+          mkdir -p "$p"
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 2 --max-time 300 \
+            'https://qurancomplex.gov.sa/files/downloads/Mushaf-Publisher-3.16.zip' -o "$p/Mushaf-Publisher-3.16.zip"
+          printf '%s  %s\n' '16e7dc5e91c6118f9fceb87244862afac2a616adc6472adac84e2836ac39e28a' "$p/Mushaf-Publisher-3.16.zip" | sha256sum --check
           python3 - <<'PY'
-          import os, zipfile, hashlib
+          import os, zipfile
           from pathlib import Path
-          from urllib.parse import urlparse
-          p = Path(os.environ["RUNNER_TEMP"]) / "kfgqpc"
-          host = urlparse((p / "source.txt").read_text().strip()).hostname
-          assert host == "qurancomplex.gov.sa" or (host and host.endswith(".qurancomplex.gov.sa")), "Resmî alan adı dışına yönlendirme"
-          archive = p / "Hafs.zip"
-          assert zipfile.is_zipfile(archive), "Yanıt geçerli ZIP değil"
-          print("Kaynak:", (p / "source.txt").read_text().strip())
-          print("Arşiv SHA256:", hashlib.sha256(archive.read_bytes()).hexdigest())
-          with zipfile.ZipFile(archive) as z:
-              assert z.testzip() is None
+          p = Path(os.environ["RUNNER_TEMP"]) / "kfgqpc" / "Mushaf-Publisher-3.16.zip"
+          with zipfile.ZipFile(p) as z:
               for f in z.infolist():
                   print(repr(f.filename), f.file_size)
-              assert any(f.filename.lower().endswith(".ttf") for f in z.infolist()), "TTF dosyası bulunamadı"
+              print("Font/lisans adayları:")
+              for f in z.infolist():
+                  if f.filename.lower().endswith((".ttf", ".otf", ".txt", ".pdf", ".msi", ".exe")):
+                      print(repr(f.filename), f.file_size)
           PY
+          # Windows çalıştırılabilir dosyası çalıştırılmaz; font ve lisans doğrulanmadan aktarım yok.
