@@ -31,4 +31,8 @@
     <string name="sonraki_ayet">Sonraki âyet</string>
     <string name="oynat">Oynat</string>
     <string name="duraklat">Duraklat</string>
+    <string name="secili_kelime_ayet">%1$d. ÂYET · KELİME</string>
+    <string name="kapat">Kapat</string>
+    <string name="kelimeyi_dinle">Kelimeyi dinle</string>
+    <string name="harfe_dokun">Harfe dokun, sesini dinle</string>
 </resources>

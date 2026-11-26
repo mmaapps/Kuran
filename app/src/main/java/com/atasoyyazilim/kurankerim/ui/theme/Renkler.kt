@@ -32,6 +32,9 @@ object Renk {
     val Basari = Color(0xFF7FD6A8)
     // Namaz.dc.html: segment kontrolünün özgün zemin rengi.
     val SegmentZemin = Color(0xFFEFE6D0)
+    // Mushaf.dc.html: kelime alt sayfasındaki özgün renkler.
+    val KelimeTutamac = Color(0xFFE0D8C4)
+    val KelimeKapatZemin = Color(0xFFF4EFE3)
     val Beyaz = Color(0xFFFFFFFF)
 }
 
