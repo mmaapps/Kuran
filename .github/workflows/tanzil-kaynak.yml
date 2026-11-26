@@ -1,0 +1,100 @@
+name: Tanzil kaynak doğrulama
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tanzil-kaynak.yml'
+permissions:
+  contents: read
+jobs:
+  kaynak:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Resmî Tanzil XML dosyalarını indir
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/tanzil"
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 3 --max-time 120 \
+            'https://tanzil.net/pub/download/index.php?quranType=uthmani&outType=xml&marks=true&sajdah=true&alef=true&tatweel=true&agree=true' \
+            -o "$RUNNER_TEMP/tanzil/quran-uthmani.xml"
+          curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --retry 3 --max-time 120 \
+            'https://tanzil.net/res/text/metadata/quran-data.xml' \
+            -o "$RUNNER_TEMP/tanzil/quran-data.xml"
+      - name: XML bütünlüğünü ve lisans bilgisini denetle
+        run: |
+          python3 - <<'PY'
+          import os, hashlib, xml.etree.ElementTree as ET
+          from pathlib import Path
+          p = Path(os.environ["RUNNER_TEMP"]) / "tanzil"
+          q = p / "quran-uthmani.xml"
+          m = p / "quran-data.xml"
+          raw = q.read_bytes()
+          assert b"tanzil" in raw.lower() and b"creative commons" in raw.lower(), "Tanzil lisans bildirimi bulunamadı"
+          qr, md = ET.parse(q).getroot(), ET.parse(m).getroot()
+          assert qr.tag == "quran", "Beklenmeyen Kur'an XML kökü"
+          assert md.tag == "quran", "Beklenmeyen metadata XML kökü"
+          suras = qr.findall("sura")
+          meta = md.findall("./suras/sura")
+          assert len(suras) == len(meta) == 114
+          total = 0
+          for i, (s, ms) in enumerate(zip(suras, meta), 1):
+              assert int(s.attrib["index"]) == int(ms.attrib["index"]) == i
+              ayas = s.findall("aya")
+              assert len(ayas) == int(ms.attrib["ayas"])
+              for j, a in enumerate(ayas, 1):
+                  assert int(a.attrib["index"]) == j and a.attrib.get("text", "").strip()
+              total += len(ayas)
+          assert total == 6236
+          for section, item, count in [("pages", "page", 604), ("juzs", "juz", 30)]:
+              items = md.findall(f"./{section}/{item}")
+              assert len(items) == count, section
+              for i, v in enumerate(items, 1):
+                  assert int(v.attrib["index"]) == i
+                  s, a = int(v.attrib["sura"]), int(v.attrib["aya"])
+                  assert 1 <= s <= 114 and 1 <= a <= len(suras[s-1].findall("aya"))
+          print("114 sûre, 6236 âyet, 604 sayfa, 30 cüz; XML yapısı doğrulandı.")
+          for f in (q, m):
+              print(f.name, hashlib.sha256(f.read_bytes()).hexdigest())
+          PY
+      - name: Doğrulanan özgün dosyaları kaydet
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tanzil-orijinal-XML
+          path: |
+            ${{ runner.temp }}/tanzil/quran-uthmani.xml
+            ${{ runner.temp }}/tanzil/quran-data.xml
+          if-no-files-found: error
+      - name: İlk içerik aktarımı
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          dest=app/src/main/assets/content/quran
+          mkdir -p "$dest"
+          for f in quran-uthmani.xml quran-data.xml; do
+            if [ -e "$dest/$f" ]; then
+              cmp "$dest/$f" "$RUNNER_TEMP/tanzil/$f" || { echo "Mevcut kaynak farklı; üzerine yazılmadı."; exit 1; }
+            fi
+          done
+          for f in quran-uthmani.xml quran-data.xml; do
+            cp "$RUNNER_TEMP/tanzil/$f" "$dest/$f"
+          done
+          git add "$dest/quran-uthmani.xml" "$dest/quran-data.xml"
+          if git diff --cached --quiet; then
+            echo "Değişiklik yok"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Tanzil: özgün Uthmani XML ve metadata kaynaklarını ekle"
+          git push origin HEAD:main
+          gh workflow run android.yml --ref main
