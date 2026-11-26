@@ -33,3 +33,41 @@ jobs:
                       print(repr(f.filename), f.file_size)
           PY
           # Windows çalıştırılabilir dosyası çalıştırılmaz; font ve lisans doğrulanmadan aktarım yok.
+      - name: MSI arşivini çalıştırmadan aç
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y msitools python3-fonttools
+          p="$RUNNER_TEMP/kfgqpc"
+          python3 - <<'PY'
+          import os, zipfile, shutil
+          from pathlib import Path
+          p = Path(os.environ["RUNNER_TEMP"]) / "kfgqpc"
+          with zipfile.ZipFile(p / "Mushaf-Publisher-3.16.zip") as z:
+              with z.open("Mushaf-Publisher-3.16/SetupProject.msi") as src, (p / "SetupProject.msi").open("wb") as dst:
+                  shutil.copyfileobj(src, dst)
+          PY
+          mkdir -p "$p/extracted"
+          msiextract -C "$p/extracted" "$p/SetupProject.msi" > "$p/msi-files.txt"
+          /usr/bin/python3 - <<'PY'
+          import os, hashlib
+          from pathlib import Path
+          from fontTools.ttLib import TTFont
+          p = Path(os.environ["RUNNER_TEMP"]) / "kfgqpc" / "extracted"
+          fonts = sorted(f for f in p.rglob("*") if f.is_file() and f.suffix.lower() in (".ttf", ".otf"))
+          print("Bulunan fontlar:", len(fonts))
+          for f in fonts:
+              print("DOSYA:", f.relative_to(p), "SHA256:", hashlib.sha256(f.read_bytes()).hexdigest())
+              with TTFont(f) as font:
+                  for i in (0, 1, 2, 4, 5, 6, 8, 13, 14):
+                      n = font["name"].getDebugName(i)
+                      if n:
+                          print(i, repr(n[:1200]))
+          print("Lisans adayları:")
+          for f in sorted(p.rglob("*")):
+              if f.is_file() and (f.suffix.lower() in (".txt", ".pdf", ".rtf") or any(s in f.name.lower() for s in ("license","licence","eula","copyright","readme"))):
+                  print(repr(str(f.relative_to(p))), f.stat().st_size)
+          assert fonts, "MSI içinden font çıkmadı"
+          PY
+          # İnceleme dışında yükleme, kurulum veya font dağıtımı yapılmaz.
