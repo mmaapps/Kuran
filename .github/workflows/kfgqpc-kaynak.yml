@@ -11,6 +11,7 @@ jobs:
   kaynak:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Resmî Mushaf Publisher 3.16 paketini doğrula ve incele
         shell: bash
         run: |
@@ -71,3 +72,30 @@ jobs:
           assert fonts, "MSI içinden font çıkmadı"
           PY
           # İnceleme dışında yükleme, kurulum veya font dağıtımı yapılmaz.
+      - name: Özgün HAFS fontunu ve tam lisansını doğrula
+        shell: bash
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 - <<'PY'
+          import os, hashlib, unicodedata, xml.etree.ElementTree as ET
+          from pathlib import Path
+          from fontTools.ttLib import TTFont
+          f = Path(os.environ["RUNNER_TEMP"]) / "kfgqpc/extracted/Fonts Folder/uthmanic_hafs_v20.ttf"
+          raw = f.read_bytes()
+          assert hashlib.sha256(raw).hexdigest() == "abfdc24eba06d05c34879e2514791d6bb25471b8ae3a1d436efa88b4d4351126"
+          with TTFont(f) as font:
+              assert font["name"].getDebugName(1) == "KFGQPC_HAFS_Uthmanic_Script_H"
+              license_text = font["name"].getDebugName(13)
+              assert license_text and "END-USER LICENSE AGREEMENT" in license_text
+              print("TAM LİSANS BAŞLANGICI")
+              print(license_text)
+              print("TAM LİSANS SONU")
+              cmap = font.getBestCmap()
+              root = ET.parse("app/src/main/assets/content/quran/quran-uthmani.xml").getroot()
+              used = {ord(c) for a in root.findall("./sura/aya") for c in a.attrib.get("text", "") if not c.isspace() and unicodedata.category(c) != "Cf"}
+              missing = sorted(used - set(cmap))
+              print("Unicode karakter sayısı:", len(used))
+              print("Eksik cmap karakterleri:", [(hex(c), unicodedata.name(chr(c), "?")) for c in missing])
+              assert not missing, "Font tüm metin karakterlerini doğrudan kapsamadı; gözden geçirme gerekli"
+          PY
+      # Lisansın tam metni ve kapsam kontrolü incelenmeden font depoya veya artifact'e aktarılmaz.
