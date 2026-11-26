@@ -15,7 +15,7 @@ import com.atasoyyazilim.kurankerim.ui.ekranlar.EzanVaktiEkrani
  * örn. `composable(Ekran.MUSHAF.rota) { MushafEkrani(...) }`.
  */
 @Composable
-fun GezinmeGrafigi(navController: NavHostController = rememberNavController()) {
+fun GezinmeGrafigi(navController: NavHostController = rememberNavController(), guncellemeKontrol: () -> Unit = {}) {
     NavHost(navController = navController, startDestination = Ekran.ANA.rota) {
         Ekran.entries.forEach { ekran ->
             composable(ekran.rota) {
@@ -27,6 +27,7 @@ fun GezinmeGrafigi(navController: NavHostController = rememberNavController()) {
                     EzanVaktiEkrani(git = { hedef -> navController.navigate(hedef.rota) { launchSingleTop = true } })
                 } else TasarimBekleyenEkran(
                     ekran = ekran,
+                    guncellemeKontrol = guncellemeKontrol,
                     git = { hedef -> navController.navigate(hedef.rota) { launchSingleTop = true } },
                     geri = { navController.popBackStack() }
                 )

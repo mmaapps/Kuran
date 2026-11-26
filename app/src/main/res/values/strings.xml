@@ -91,4 +91,20 @@
     <string name="vakit_sabah_alt">İmsaktan sonra okunma zamanı</string>
     <string name="vakit_imsakta">İmsakta</string>
     <string name="vakit_dakika">%1$d dk</string>
+    <!-- Kullanıcı onaylı GitHub güncellemesi -->
+    <string name="guncelleme_baslik">Uygulama güncellemesi</string>
+    <string name="guncelleme_kontrol">Güncellemeleri kontrol et</string>
+    <string name="guncelleme_surumu">Mevcut sürüm: %1$s</string>
+    <string name="guncelleme_yeni">Yeni sürüm: %1$s</string>
+    <string name="guncelleme_araniyor">Güncelleme aranıyor…</string>
+    <string name="guncelleme_yok">Yeni uygun sürüm bulunamadı.</string>
+    <string name="guncelleme_mevcut">Yeni güncelleme mevcut.</string>
+    <string name="guncelleme_baglanti">Güncelleme kontrol edilemedi. Daha sonra tekrar deneyin.</string>
+    <string name="guncelleme_indiriliyor">Güncelleme indiriliyor…</string>
+    <string name="guncelleme_dogrulandi">APK doğrulandı. Yüklemeye hazır.</string>
+    <string name="guncelleme_red">Güncelleme indirilemedi veya güvenlik kontrolünden geçemedi.</string>
+    <string name="guncelleme_izin">Android yükleme iznini verip geri dönün ve tekrar yükleye dokunun.</string>
+    <string name="guncelleme_indir">Güncellemeyi indir</string>
+    <string name="guncelleme_yukle">Güncellemeyi yükle</string>
+    <string name="guncelleme_sonra">Daha sonra</string>
 </resources>

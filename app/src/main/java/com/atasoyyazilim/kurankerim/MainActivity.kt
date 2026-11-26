@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.atasoyyazilim.kurankerim.ui.nav.GezinmeGrafigi
+import com.atasoyyazilim.kurankerim.guncelleme.GuncellemeKontrolu
 import com.atasoyyazilim.kurankerim.ui.theme.KuranTema
 
 class MainActivity : ComponentActivity() {
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             // TODO(Ayarlar.dc.html): tema seçimi DataStore'dan okunacak (Açık / Gece / Otomatik)
             KuranTema {
-                GezinmeGrafigi()
+                GuncellemeKontrolu { kontrol -> GezinmeGrafigi(guncellemeKontrol = kontrol) }
             }
         }
     }

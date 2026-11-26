@@ -19,6 +19,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import com.atasoyyazilim.kurankerim.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.atasoyyazilim.kurankerim.ui.bilesenler.HatMadalyonu
@@ -31,7 +33,7 @@ import com.atasoyyazilim.kurankerim.ui.theme.Renk
  * Ana sayfada tüm ekranlara geçiş listesi vardır (sadece geliştirme sırasında deneme için).
  */
 @Composable
-fun TasarimBekleyenEkran(ekran: Ekran, git: (Ekran) -> Unit, geri: () -> Unit) {
+fun TasarimBekleyenEkran(ekran: Ekran, git: (Ekran) -> Unit, geri: () -> Unit, guncellemeKontrol: () -> Unit = {}) {
     val r = LocalTemaRenkleri.current
     Column(
         Modifier
@@ -58,6 +60,11 @@ fun TasarimBekleyenEkran(ekran: Ekran, git: (Ekran) -> Unit, geri: () -> Unit) {
             color = r.ikincil
         )
         Spacer(Modifier.height(16.dp))
+        if (ekran == Ekran.AYARLAR) {
+            Text(stringResource(R.string.guncelleme_kontrol), modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)
+                .clickable { guncellemeKontrol() }.padding(vertical = 12.dp),
+                style = MaterialTheme.typography.titleMedium, color = r.aktif)
+        }
         if (ekran == Ekran.ANA) {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 items(Ekran.entries.filter { it != Ekran.ANA }) { hedef ->
