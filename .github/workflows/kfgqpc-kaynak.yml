@@ -10,8 +10,13 @@ permissions:
 jobs:
   kaynak:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Resmî Mushaf Publisher 3.16 paketini doğrula ve incele
         shell: bash
         run: |
@@ -98,4 +103,63 @@ jobs:
               print("Eksik cmap karakterleri:", [(hex(c), unicodedata.name(chr(c), "?")) for c in missing])
               assert not missing, "Font tüm metin karakterlerini doğrudan kapsamadı; gözden geçirme gerekli"
           PY
-      # Lisansın tam metni ve kapsam kontrolü incelenmeden font depoya veya artifact'e aktarılmaz.
+      - name: Doğrulanan HAFS fontunu özgün lisansıyla ekle
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          /usr/bin/python3 - <<'PY'
+          import os, hashlib, shutil
+          from pathlib import Path
+          from fontTools.ttLib import TTFont
+          src = Path(os.environ["RUNNER_TEMP"]) / "kfgqpc/extracted/Fonts Folder/uthmanic_hafs_v20.ttf"
+          dest = Path("app/src/main/res/font/kfgqpc_hafs.ttf")
+          lic = Path("app/src/main/assets/lisanslar/kfgqpc_hafs_EULA.txt")
+          yazi = Path("app/src/main/java/com/atasoyyazilim/kurankerim/ui/theme/Yazi.kt")
+          expected = "abfdc24eba06d05c34879e2514791d6bb25471b8ae3a1d436efa88b4d4351126"
+          assert hashlib.sha256(src.read_bytes()).hexdigest() == expected
+          with TTFont(src) as font:
+              assert font["name"].getDebugName(1) == "KFGQPC_HAFS_Uthmanic_Script_H"
+              license_text = font["name"].getDebugName(13)
+              assert license_text and "END-USER LICENSE AGREEMENT" in license_text
+              assert "Use, Copy, Distribute" in license_text
+              license_bytes = license_text.encode("utf-8")
+          original = yazi.read_text(encoding="utf-8")
+          old = """/**
+           * MUSHAF YAZISI.
+           * KFGQPC Hafs dosyası (res/font/kfgqpc_hafs.ttf) resmî siteden eklendiğinde bu satır
+           * `FontFamily(Font(R.font.kfgqpc_hafs))` yapılacak. O zamana kadar önizleme için Amiri Quran.
+           */
+          val MushafYazi: FontFamily = AmiriQuran"""
+          new = """/**
+           * MUSHAF YAZISI — özgün KFGQPC HAFS Uthmanic Script v2.00.
+           * Lisans: assets/lisanslar/kfgqpc_hafs_EULA.txt
+           */
+          val MushafYazi: FontFamily = FontFamily(Font(R.font.kfgqpc_hafs))"""
+          if old in original:
+              updated = original.replace(old, new, 1)
+          else:
+              assert new in original, "Yazi.kt beklenmedik biçimde değişmiş"
+              updated = original
+          if dest.exists():
+              assert dest.read_bytes() == src.read_bytes(), "Mevcut font farklı"
+          if lic.exists():
+              assert lic.read_bytes() == license_bytes, "Mevcut lisans farklı"
+          shutil.copyfile(src, dest)
+          lic.write_bytes(license_bytes)
+          yazi.write_text(updated, encoding="utf-8")
+          assert hashlib.sha256(dest.read_bytes()).hexdigest() == expected
+          print("Özgün HAFS SHA-256 eşleşti; lisans ve MushafYazi hazır.")
+          PY
+          git add app/src/main/res/font/kfgqpc_hafs.ttf app/src/main/assets/lisanslar/kfgqpc_hafs_EULA.txt app/src/main/java/com/atasoyyazilim/kurankerim/ui/theme/Yazi.kt
+          if git diff --cached --quiet; then
+            echo "Font zaten entegre edilmiş."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Mushaf: özgün KFGQPC HAFS v2.00 ve gömülü lisansını ekle"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh workflow run android.yml --ref main
