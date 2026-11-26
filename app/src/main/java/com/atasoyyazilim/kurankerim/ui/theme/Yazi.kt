@@ -35,11 +35,10 @@ val Amiri = FontFamily(
 )
 
 /**
- * MUSHAF YAZISI.
- * KFGQPC Hafs dosyası (res/font/kfgqpc_hafs.ttf) resmî siteden eklendiğinde bu satır
- * `FontFamily(Font(R.font.kfgqpc_hafs))` yapılacak. O zamana kadar önizleme için Amiri Quran.
+ * MUSHAF YAZISI — özgün KFGQPC HAFS Uthmanic Script v2.00.
+ * Lisans: assets/lisanslar/kfgqpc_hafs_EULA.txt
  */
-val MushafYazi: FontFamily = AmiriQuran
+val MushafYazi: FontFamily = FontFamily(Font(R.font.kfgqpc_hafs))
 
 /** Tasarımdaki yazı ölçeği (TASARIM_KURALLARI.md §2). */
 val KuranTipografi = Typography(
