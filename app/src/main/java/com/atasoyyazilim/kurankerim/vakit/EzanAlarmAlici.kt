@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import com.atasoyyazilim.kurankerim.bildirim.Bildirimler
 import com.atasoyyazilim.kurankerim.ses.EzanServisi
+import java.io.IOException
 
 /** Ezan ve "5 dakika kaldı" alarmlarını karşılar. */
 class EzanAlarmAlici : BroadcastReceiver() {
@@ -13,10 +14,20 @@ class EzanAlarmAlici : BroadcastReceiver() {
             ?.let { ad -> Vakit.entries.firstOrNull { it.name == ad } }
             ?: return
 
+        val zaman = intent.getLongExtra(EzanZamanlayici.EK_ZAMAN, 0L)
+        if (zaman <= 0L) return
         when (intent.getStringExtra(EzanZamanlayici.EK_TUR)) {
-            EzanZamanlayici.TUR_HATIRLAT -> Bildirimler.hatirlatmaGoster(context, vakit)
+            EzanZamanlayici.TUR_HATIRLAT -> if (VakitAyarlari.hatirlatmaAcik(context) && System.currentTimeMillis() - zaman < 60_000L) Bildirimler.hatirlatmaGoster(context, vakit)
             EzanZamanlayici.TUR_EZAN -> {
-                if (VakitAyarlari.ezanAcik(context, vakit)) EzanServisi.baslat(context, vakit)
+                val dosya = vakit.sesDosyasi
+                val hazir = dosya != null && try {
+                    context.assets.openFd("ses/ezan/$dosya.m4a").use { true }
+                } catch (_: IOException) { false }
+                if (hazir && VakitAyarlari.ezanAcik(context, vakit) && System.currentTimeMillis() - zaman < 60_000L) {
+                    try { EzanServisi.baslat(context, vakit) } catch (e: IllegalStateException) {
+                        android.util.Log.w("EzanAlarmAlici", "Sistem ses hizmetini başlatmadı", e)
+                    }
+                }
                 // Sonraki alarmlar ve geri sayım
                 val k = VakitAyarlari.konum(context)
                 EzanZamanlayici.kur(context, k.enlem, k.boylam)

@@ -69,6 +69,8 @@ object Bildirimler {
     private fun saat(zaman: Instant): String =
         DateTimeFormatter.ofPattern("HH:mm").withZone(ZoneId.systemDefault()).format(zaman)
 
+    fun geriSayimKapat(context: Context) = context.getSystemService(NotificationManager::class.java).cancel(ID_GERI_SAYIM)
+
     /** "Sıradaki: Akşam · 16:52" + canlı geri sayım (sistem kronometresi; servis gerekmez). */
     @SuppressLint("MissingPermission")
     fun geriSayimGoster(context: Context, vakit: Vakit, zaman: Instant) {

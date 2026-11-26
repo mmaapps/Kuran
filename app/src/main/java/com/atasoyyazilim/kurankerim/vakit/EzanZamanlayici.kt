@@ -11,7 +11,7 @@ import java.time.Instant
 /**
  * Ezan ve "5 dakika kaldı" alarmlarını kurar.
  * - Tam zamanlı alarm için SCHEDULE_EXACT_ALARM (kullanıcı "Alarmlar ve hatırlatıcılar" iznini verir).
- *   İzin yoksa en fazla 1 dakika sapmalı alarm kurulur; uygulama içinde izin istenir (açıklamayla).
+ *   İzin yoksa gecikmesi sistem tarafından belirlenen yaklaşık alarm kurulur; uygulama içinde izin istenir (açıklamayla).
  * - USE_EXACT_ALARM KULLANILMAZ (Google Play sadece alarm/saat/takvim uygulamalarına izin veriyor).
  * - Her ezandan sonra ve telefon açılınca yeniden çağrılır.
  */
@@ -20,6 +20,7 @@ object EzanZamanlayici {
     const val TUR_HATIRLAT = "hatirlat"
     const val EK_TUR = "tur"
     const val EK_VAKIT = "vakit"
+    const val EK_ZAMAN = "zaman"
 
     fun tamZamanliIzinVar(context: Context): Boolean =
         Build.VERSION.SDK_INT < Build.VERSION_CODES.S ||
@@ -52,10 +53,16 @@ object EzanZamanlayici {
         val simdi = Instant.now()
         val siradakiler = siradakiEzanlar(context, enlem, boylam, simdi).take(5)
 
+        // Önce eski planı iptal et; kapatılan veya taşınan alarmlar kalmasın.
+        for (kod in (100..104).toList() + (200..204).toList()) {
+            val pi = PendingIntent.getBroadcast(context, kod,
+                Intent(context, EzanAlarmAlici::class.java),
+                PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE)
+            if (pi != null) { am.cancel(pi); pi.cancel() }
+        }
         siradakiler.forEachIndexed { i, (vakit, zaman) ->
-            if (VakitAyarlari.ezanAcik(context, vakit)) {
-                alarmKur(context, am, zaman.toEpochMilli(), TUR_EZAN, vakit, 100 + i)
-            }
+            // Ses kapalı olsa da sonraki geri sayım/plan yenilenmeli.
+            alarmKur(context, am, zaman.toEpochMilli(), TUR_EZAN, vakit, 100 + i)
             val hatirlat = zaman.minusSeconds(5 * 60)
             if (VakitAyarlari.hatirlatmaAcik(context) && hatirlat.isAfter(simdi)) {
                 alarmKur(context, am, hatirlat.toEpochMilli(), TUR_HATIRLAT, vakit, 200 + i)
@@ -63,7 +70,8 @@ object EzanZamanlayici {
         }
 
         // Bildirim çubuğunda sıradaki ezana geri sayım (Bildirim.dc.html)
-        siradakiler.firstOrNull()?.let { (vakit, zaman) -> Bildirimler.geriSayimGoster(context, vakit, zaman) }
+        if (!VakitAyarlari.geriSayimAcik(context) || siradakiler.isEmpty()) Bildirimler.geriSayimKapat(context)
+        else siradakiler.firstOrNull()?.let { (vakit, zaman) -> Bildirimler.geriSayimGoster(context, vakit, zaman) }
     }
 
     private fun alarmKur(
@@ -77,6 +85,7 @@ object EzanZamanlayici {
         val niyet = Intent(context, EzanAlarmAlici::class.java)
             .putExtra(EK_TUR, tur)
             .putExtra(EK_VAKIT, vakit.name)
+            .putExtra(EK_ZAMAN, zamanMs)
         val pi = PendingIntent.getBroadcast(
             context, istekKodu, niyet,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
@@ -84,7 +93,7 @@ object EzanZamanlayici {
         if (tamZamanliIzinVar(context)) {
             am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, zamanMs, pi)
         } else {
-            am.setWindow(AlarmManager.RTC_WAKEUP, zamanMs, 60_000L, pi)
+            am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, zamanMs, pi)
         }
     }
 }

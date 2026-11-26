@@ -36,6 +36,8 @@ object Renk {
     // Mushaf.dc.html: kelime alt sayfasındaki özgün renkler.
     val KelimeTutamac = Color(0xFFE0D8C4)
     val KelimeKapatZemin = Color(0xFFF4EFE3)
+    val VakitGecmis = Color(0xFFC9C2B0) // EzanVakti.dc.html
+    val VakitZilKapali = Color(0xFFB5AE9C) // EzanVakti.dc.html
     val Beyaz = Color(0xFFFFFFFF)
 }
 

@@ -69,4 +69,26 @@
     <string name="mushaf_kaydedildi">Kaldığın yer otomatik kaydedildi</string>
     <string name="mushaf_tilavet">Sesli tilâvet · %1$d. âyet</string>
     <string name="mushaf_ses_yok">Bu içerik henüz eklenmedi.</string>
+    <!-- EzanVakti.dc.html -->
+    <string name="vakit_baslik">Ezan Vakitleri</string>
+    <string name="vakit_kalan">%1$s’a</string>
+    <string name="vakit_siradaki">SIRADAKİ EZAN</string>
+    <string name="vakit_uyari">5 dk kala hatırlatılacak.</string>
+    <string name="vakit_sabah_saat">Sabah ezanı %1$s</string>
+    <string name="vakit_zil_acik">%1$s ezan sesi açık</string>
+    <string name="vakit_zil_kapali">%1$s ezan sesi kapalı</string>
+    <string name="vakit_hesap_notu">Vakitler cihazda hesaplanır. Diyanet takviminden birkaç dakika farklı olabilir.</string>
+    <string name="vakit_ayarlar">Ezan ayarları</string>
+    <string name="vakit_hatirlat">Ezana 5 dakika kala hatırlat</string>
+    <string name="vakit_hatirlat_alt">Bildirim: “Akşam ezanına 5 dakika kaldı”</string>
+    <string name="vakit_ayet">Ezan sonrası kısa âyet</string>
+    <string name="vakit_ayet_alt">Ezan bitince kısa bir âyet tilâveti</string>
+    <string name="vakit_geri_sayim">Bildirim çubuğunda geri sayım</string>
+    <string name="vakit_geri_sayim_alt">Üst bildirimde sıradaki ezana kalan süre</string>
+    <string name="vakit_titret">Sessiz modda titret</string>
+    <string name="vakit_titret_alt">Telefon sessizdeyken sadece titreşim</string>
+    <string name="vakit_sabah_ayar">Sabah ezanı</string>
+    <string name="vakit_sabah_alt">İmsaktan sonra okunma zamanı</string>
+    <string name="vakit_imsakta">İmsakta</string>
+    <string name="vakit_dakika">%1$d dk</string>
 </resources>
