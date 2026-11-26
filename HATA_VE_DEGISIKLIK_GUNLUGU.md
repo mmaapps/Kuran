@@ -58,3 +58,7 @@ NOT: 26 Kasım — Kullanıcı ZIP'teki kodlama ve ekran kurallarının aynen uy
 DÜZELTİLDİ: Tanzil özgün XML aktarımı 9d05f8dd commitinde tamamlandı; Android CI 45858936036 başarılı.
 KARAR: Kullanıcı KFGQPC HAFS yazı tipi için yazılı izin aldığını bildirdi ve geliştirmeye devam edilmesini istedi. İzin belgesi bağımsız olarak incelenmedi; özel telif klasörüne dokunulmadı. Yalnız resmî kaynaktaki özgün font ve lisans metni kullanılacak, MushafYazi ancak dosya doğrulandıktan sonra değişecek. Sıradan Arapça sistem yazısı Mushaf yerine kullanılmayacak. Ses izinleri ayrı ve hâlâ bekliyor.
 HATA: Resmî font sitesinin ana sayfası yeni qurancomplex.gov.sa sitesine yönlendiriliyor; eski HAFS sayfası 404 dönüyor. Resmî arşiv dosyasının içeriği henüz doğrulanamadı.
+
+## 2026-11-26 — HAFS kaynak kontrolü sonucu
+HATA: CI 45865969087, iş 140068758232, eski resmî Hafs.zip adresinde HTTP 404 (curl 22). Android CI 45865969253, iş 140068760014, gerçek loglarda 42/42 Gradle işlemi başarılı (32s), APK/AAB artifact 15139688530 yüklendi. Font henüz yok.
+NOT: Kurumun yeni sitesinde font kataloğu bulundu ancak istenen HAFS arşivinin doğrudan bağlantısı doğrulanamadı. Resmî alan adındaki tarihsel Ver18 arşiv adresi 7fa56a16 commitinde sınanıyor; arşiv yayımlanmayacak ve font/lisans doğrulanmadan uygulamaya eklenmeyecek. Ekran geliştirme aşamasına geçilmedi; uygulama kodu değiştirilmedi.
