@@ -1,0 +1,13 @@
+.gradle/
+build/
+/local.properties
+/.idea/
+*.iml
+.DS_Store
+*.apk
+*.aab
+*.apks
+*.jks
+*.keystore
+# İmzalı izin belgeleri herkese açık depoya konmaz
+BELGELER/
