@@ -53,3 +53,8 @@ HATA: Resmî Tanzil metadata indirme adresine (https://tanzil.net/res/text/metad
 SORU: KFGQPC HAFS yazı tipi için orijinal pakette yazılı lisans teyidi bekliyor; teyit gelmeden font eklenmeyecek. Tanzil XML dosyaları resmî kaynaktan değişmeden temin edilmeli. Aşama 2 açık; ekran kodlamasına geçilmedi.
 
 NOT: 26 Kasım — Kullanıcı ZIP'teki kodlama ve ekran kurallarının aynen uygulanmasını tekrar istedi. Yerel Tanzil DNS hatası yeniden oluştu. Resmî HTTPS kaynaklarından özgün XML'leri indiren, lisans bildirimi ve 114 sûre/6236 âyet/604 sayfa/30 cüz yapısını denetleyen, SHA-256 kaydeden, mevcut dosyaları değiştirmeyen CI aktarım işlemi c2f8e6e commitinde eklendi. CI 45858283037 sırada; indirme/aktarım henüz doğrulanmadı. KFGQPC yazılı teyit bekliyor; ekran kodlamasına geçilmedi.
+
+## 2026-11-26 — KFGQPC HAFS izin kararı
+DÜZELTİLDİ: Tanzil özgün XML aktarımı 9d05f8dd commitinde tamamlandı; Android CI 45858936036 başarılı.
+KARAR: Kullanıcı KFGQPC HAFS yazı tipi için yazılı izin aldığını bildirdi ve geliştirmeye devam edilmesini istedi. İzin belgesi bağımsız olarak incelenmedi; özel telif klasörüne dokunulmadı. Yalnız resmî kaynaktaki özgün font ve lisans metni kullanılacak, MushafYazi ancak dosya doğrulandıktan sonra değişecek. Sıradan Arapça sistem yazısı Mushaf yerine kullanılmayacak. Ses izinleri ayrı ve hâlâ bekliyor.
+HATA: Resmî font sitesinin ana sayfası yeni qurancomplex.gov.sa sitesine yönlendiriliyor; eski HAFS sayfası 404 dönüyor. Resmî arşiv dosyasının içeriği henüz doğrulanamadı.
