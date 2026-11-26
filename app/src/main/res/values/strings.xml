@@ -107,4 +107,5 @@
     <string name="guncelleme_indir">Güncellemeyi indir</string>
     <string name="guncelleme_yukle">Güncellemeyi yükle</string>
     <string name="guncelleme_sonra">Daha sonra</string>
+    <string name="vakit_alarm_izin">Tam zamanlı ezan için alarmlar ve hatırlatıcılar iznini aç. İzin yoksa sistem alarmı geciktirebilir.</string>
 </resources>

@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/release-adayi.yml'
+      - 'app/build.gradle.kts'
 permissions:
   contents: read
 jobs:
@@ -39,6 +40,16 @@ jobs:
           [[ "$CODE" =~ ^[1-9][0-9]*$ && "$NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
           grep -F "package: name='com.atasoyyazilim.kurankerim' versionCode='$CODE' versionName='$NAME'" candidate/badging.txt
           ! grep -q '^application-debuggable' candidate/badging.txt
+          python3 - <<'PY'
+          import zipfile, hashlib
+          from pathlib import Path
+          with zipfile.ZipFile('candidate/KuranKerim-release-aday.apk') as z:
+              for path in ('assets/content/quran/quran-uthmani.xml','assets/content/quran/quran-data.xml','res/font/kfgqpc_hafs.ttf'):
+                  actual = z.read(path)
+                  expected = (Path('app/src/main') / path).read_bytes()
+                  assert actual == expected, path
+                  print(path, hashlib.sha256(actual).hexdigest())
+          PY
           printf '%s\n' "$GITHUB_SHA" > candidate/commit.txt
           (cd candidate && sha256sum KuranKerim-release-aday.apk > SHA256SUMS)
           rm -f "$RUNNER_TEMP/ephemeral.p12"

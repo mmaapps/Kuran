@@ -91,9 +91,13 @@ object EzanZamanlayici {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         if (tamZamanliIzinVar(context)) {
-            am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, zamanMs, pi)
-        } else {
-            am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, zamanMs, pi)
+            try {
+                am.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, zamanMs, pi)
+                return
+            } catch (_: SecurityException) {
+                // İzin kontrolü ile kurulum arasında izin kaldırılmış olabilir.
+            }
         }
+        am.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, zamanMs, pi)
     }
 }

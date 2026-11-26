@@ -40,6 +40,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import android.content.pm.PackageManager
 import com.atasoyyazilim.kurankerim.R
 import com.atasoyyazilim.kurankerim.ui.bilesenler.AltSekmeCubugu
@@ -87,7 +90,25 @@ fun EzanVaktiEkrani(git:(Ekran)->Unit) {
         "sessizde_titret" to VakitAyarlari.sessizdeTitret(c)
     ) }
     fun yenile() { EzanZamanlayici.kur(c,konum.enlem,konum.boylam) }
+    var tamAlarm by remember { mutableStateOf(EzanZamanlayici.tamZamanliIzinVar(c)) }
+    val lifecycle=LocalLifecycleOwner.current.lifecycle
+    DisposableEffect(lifecycle) {
+        val observer=LifecycleEventObserver { _, event ->
+            if(event==Lifecycle.Event.ON_RESUME) {
+                val yeni=EzanZamanlayici.tamZamanliIzinVar(c)
+                if(yeni!=tamAlarm) { tamAlarm=yeni; yenile() }
+            }
+        }
+        lifecycle.addObserver(observer)
+        onDispose { lifecycle.removeObserver(observer) }
+    }
     val bildirimIzin=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { yenile() }
+    fun alarmIste() {
+        if(Build.VERSION.SDK_INT>=31 && !EzanZamanlayici.tamZamanliIzinVar(c)) {
+            try { c.startActivity(Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,Uri.parse("package:"+c.packageName))) }
+            catch(_:android.content.ActivityNotFoundException) { c.startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,Uri.parse("package:"+c.packageName))) }
+        }
+    }
     fun bildirimIste() {
         if(Build.VERSION.SDK_INT>=33 && ContextCompat.checkSelfPermission(c,Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)
             bildirimIzin.launch(Manifest.permission.POST_NOTIFICATIONS)
@@ -187,6 +208,12 @@ fun EzanVaktiEkrani(git:(Ekran)->Unit) {
             }
             Spacer(Modifier.height(6.dp))
             VY(stringResource(R.string.vakit_hesap_notu),11.5f,r.ikincil)
+            if(!tamAlarm) {
+                // Sistem izni açıklaması: kullanıcı onayı olmadan ayar ekranı açılmaz.
+                Text(stringResource(R.string.vakit_alarm_izin),modifier=Modifier.fillMaxWidth()
+                    .heightIn(min=44.dp).clickable(role=Role.Button){alarmIste()}.padding(vertical=8.dp),
+                    color=r.aktif,fontFamily=Manrope,fontSize=12.sp,fontWeight=FontWeight.Bold)
+            }
             Spacer(Modifier.height(18.dp))
             VY(stringResource(R.string.vakit_ayarlar),16f,r.baslik,FontWeight.ExtraBold)
             Spacer(Modifier.height(8.dp))
