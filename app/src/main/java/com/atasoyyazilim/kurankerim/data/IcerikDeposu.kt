@@ -30,6 +30,18 @@ class IcerikDeposu(private val context: Context) {
         return (0 until d.length()).map { d.getString(it) }
     }
 
+    /** Diskteki özgün XML değişmeden okunur; eksik/geçersiz veri boş durum üretir. */
+    fun mushaf(): MushafVerisi? = try {
+        context.assets.open("content/quran/quran-uthmani.xml").use { metin ->
+            context.assets.open("content/quran/quran-data.xml").use { metadata ->
+                MushafVerisi.oku(metin, metadata)
+            }
+        }
+    } catch (e: Exception) {
+        android.util.Log.e("IcerikDeposu", "Mushaf XML okunamadı", e)
+        null
+    }
+
     fun hadisler(): List<Hadis> = liste("hadis/hadisler.json", "hadisler") {
         Hadis(
             id = it.getString("id"),
