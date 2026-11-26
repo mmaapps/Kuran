@@ -42,3 +42,12 @@ NOT: Başarısız iş yeniden başlatıldı. Bağımlılık sürümleri ve tasar
 DÜZELTİLDİ: İkinci denemede Maven bağımlılıkları çözüldü; :app:bundleDebug BUILD SUCCESSFUL (42 işlem, 2m 23s).
 HATA: Bundletool, /home/runner/.android/debug.keystore bulunamadığı için evrensel APK üretemedi (iş 140025369968). AAB oluşturuldu ancak artifact yükleme adımı atlandı.
 NOT: CI üzerinde yalnız debug amaçlı geçici imzalama anahtarı oluşturulması gerekiyor; üretim imzası kullanılmayacak. Tam CI başarısı henüz doğrulanmadı.
+
+## 2026-11-26 — Üçüncü CI (45855943894, c8c4bf7)
+DÜZELTİLDİ: CI debug anahtarı geçici olarak oluşturuluyor. İş 140034220021 gerçek loglarında :app:bundleDebug BUILD SUCCESSFUL (42 işlem, 2m 18s), bundletool evrensel APK üretimi ve artifact yükleme başarılı. Artifact 15134938880 (27.875.871 bayt; ZIP SHA-256 2c7a8c180a1ad2b29dac4fad918467065ab12dfc8761e0b93cbcf2cd236bd8eb). CI: https://github.com/mmaapps/Kuran/actions/runs/45855943894
+NOT: Kullanıcı Termux kalıcı imzalama başarısını bildirdi; yerel APK ve imza sertifikası bağımsız doğrulanmadı. Bu iskelet kararlı sürüm değildir; Release yayımlanmadı.
+
+## 2026-11-26 — Aşama 2: İçerik kaynakları
+NOT: Orijinal 01_CODEX_TALIMATLARI.md ve 03_ICERIK_KAYNAKLARI.md yeniden incelendi. Depoda altı Amiri/Manrope/Lora fontu ve ilgili lisanslar mevcut. quran-uthmani.xml, quran-data.xml ve kfgqpc_hafs.ttf eksik.
+HATA: Resmî Tanzil metadata indirme adresine (https://tanzil.net/res/text/metadata/quran-data.xml) çalışma ortamından curl ile erişilemedi: Could not resolve host: tanzil.net. Resmî kaynak sayfaları doğrulandı ancak özgün XML dosyalarının baytları alınamadı. Doğrulanmamış metin veya alternatif kaynak kullanılmadı.
+SORU: KFGQPC HAFS yazı tipi için orijinal pakette yazılı lisans teyidi bekliyor; teyit gelmeden font eklenmeyecek. Tanzil XML dosyaları resmî kaynaktan değişmeden temin edilmeli. Aşama 2 açık; ekran kodlamasına geçilmedi.
