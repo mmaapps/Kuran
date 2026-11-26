@@ -34,3 +34,7 @@ NOT: GitHub bağlantısı üzerinden özgün .gitignore ve bu günlük eklendi. 
 
 ## 2026-11-26 — Android proje aktarımı
 DÜZELTİLDİ: 05_ANDROID_PROJE içeriği depoya aktarılıyor. İlk GitHub Actions derlemesinin sonucu henüz doğrulanmadı.
+
+## 2026-11-26 — İlk CI (45847393301, 499d9f8)
+HATA: AAB derlemesinde Gradle classpath bağımlılıkları Maven Central HTTP 429 (Too Many Requests) nedeniyle indirilemedi. Kotlin derlemesine ulaşılamadı. Örnek: org.jetbrains.kotlin:kotlin-reflect:2.0.20.
+NOT: Başarısız iş yeniden başlatıldı. Bağımlılık sürümleri ve tasarım değiştirilmedi. Sonuç doğrulanınca kayıt güncellenecek.
