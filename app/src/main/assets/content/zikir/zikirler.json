@@ -1,0 +1,35 @@
+{
+  "kaynak": "02_TASARIM/ekranlar/Zikirmatik.dc.html — özgün Z listesi, değiştirilmedi",
+  "zikirler": [
+    {
+      "id": 0,
+      "ad": "Sübhânallah",
+      "arapca": "سُبْحَانَ ٱللَّهِ",
+      "anlam": "Allah her türlü eksiklikten uzaktır"
+    },
+    {
+      "id": 1,
+      "ad": "Elhamdülillâh",
+      "arapca": "ٱلْحَمْدُ لِلَّهِ",
+      "anlam": "Hamd Allah’a mahsustur"
+    },
+    {
+      "id": 2,
+      "ad": "Allâhu ekber",
+      "arapca": "ٱللَّهُ أَكْبَرُ",
+      "anlam": "Allah en büyüktür"
+    },
+    {
+      "id": 3,
+      "ad": "Lâ ilâhe illallâh",
+      "arapca": "لَا إِلَٰهَ إِلَّا ٱللَّهُ",
+      "anlam": "Allah’tan başka ilah yoktur"
+    },
+    {
+      "id": 4,
+      "ad": "Estağfirullâh",
+      "arapca": "أَسْتَغْفِرُ ٱللَّهَ",
+      "anlam": "Allah’tan bağışlanma dilerim"
+    }
+  ]
+}

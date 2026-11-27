@@ -44,3 +44,6 @@ data class IlmihalBolumu(val id: String, val baslik: String, val altBaslik: Stri
 
 /** assets/content/ayetler/ezan_sonrasi.json — sadece âyet numaraları; Arapça metin Kur'an dosyasından, ses tilâvetten. Meal yok. */
 data class AyetAraligi(val sure: Int, val ayetler: List<Int>)
+
+/** Zikirmatik.dc.html özgün beş zikir metni. Âyet çevirisi değildir. */
+data class Zikir(val id:Int,val ad:String,val arapca:String,val anlam:String)

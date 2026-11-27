@@ -42,6 +42,10 @@ class IcerikDeposu(private val context: Context) {
         null
     }
 
+    fun zikirler(): List<Zikir> = liste("zikir/zikirler.json","zikirler") {
+        Zikir(it.getInt("id"),it.getString("ad"),it.getString("arapca"),it.getString("anlam"))
+    }
+
     fun hadisler(): List<Hadis> = liste("hadis/hadisler.json", "hadisler") {
         Hadis(
             id = it.getString("id"),

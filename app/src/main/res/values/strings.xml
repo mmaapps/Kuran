@@ -160,4 +160,11 @@
     <string name="kible_sensor_yok">Bu cihazda pusula sensörü kullanılamıyor.</string>
     <string name="kible_duz">Telefonu düz tut.</string>
     <string name="kible_kalibre">Pusulayı kalibre et.</string>
+    <string name="zikir_baslik">Zikirmatik</string>
+    <string name="zikir_sifirla">Sıfırla</string>
+    <string name="zikir_say_etiket">Say: %1$s, şu an %2$d</string>
+    <string name="zikir_dokun">/ %1$d · Dokun ve say</string>
+    <string name="zikir_bugun">Bugün toplam</string>
+    <string name="zikir_toplam">%1$d zikir · %2$d tur</string>
+    <string name="zikir_titresim">Her dokunuşta hafif titreşim · Hedefe ulaşınca uzun titreşim</string>
 </resources>
