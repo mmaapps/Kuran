@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- 26 Kasım kullanıcı onayı: sadece GitHub APK güncellemesi için internet ve yükleme izni. -->
+    <!-- Kullanıcı onayı: GitHub güncellemesi, yaklaşık konum ve çevrimiçi vakit takvimi. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
 
     <application
         android:name=".KuranUygulamasi"
@@ -57,6 +58,11 @@
                 <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <!-- Açık kullanıcı onayıyla başlayan, görünür bildirimli seyahat modu. -->
+        <service android:name=".vakit.SeyahatServisi"
+            android:exported="false" android:stopWithTask="true"
+            android:foregroundServiceType="location" />
 
         <!-- Ezan sesini ekran kapalıyken çalan ön plan hizmeti -->
         <service

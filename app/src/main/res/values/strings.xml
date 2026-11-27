@@ -117,8 +117,16 @@
     <string name="ezan_ani_sustur">Ezanı sustur</string>
     <string name="vakit_otomatik_konum">Otomatik konum</string>
     <string name="vakit_konum_baslik">Otomatik ezan konumu</string>
-    <string name="vakit_konum_aciklama">İzin verirseniz uygulama açıkken yaklaşık konumunuz belirlenir. Yuvarlanmış bölge koordinatları internet üzerinden AlAdhan hizmetine namaz vakitlerini hesaplamak için gönderilir. İnternet yoksa cihaz hesabı kullanılır. Arka planda konum izlenmez. İzni Android ayarlarından kapatabilirsiniz.</string>
+    <string name="vakit_konum_aciklama">İzin verirseniz uygulama açıkken yaklaşık konumunuz belirlenir. Yuvarlanmış bölge koordinatları internet üzerinden AlAdhan hizmetine namaz vakitlerini hesaplamak için gönderilir. İnternet yoksa cihaz hesabı kullanılır. Seyahat modu kapalıyken arka planda konum izlenmez. İzni Android ayarlarından kapatabilirsiniz.</string>
     <string name="vakit_konum_onay">Konumu etkinleştir</string>
     <string name="vakit_cevrimici_notu">AlAdhan çevrimiçi takvimi (Türkiye hesap yöntemi). Resmî Diyanet takviminden farklı olabilir.</string>
     <string name="vakit_varsayilan_konum">İstanbul varsayılan konumudur. Otomatik konum için şehir düğmesine dokunun.</string>
+    <string name="seyahat_baslik">Seyahat modu</string>
+    <string name="seyahat_aktif">Seyahat modu açık</string>
+    <string name="seyahat_pasif">Ekran kapalıyken konuma göre ezan vakitlerini yenile.</string>
+    <string name="seyahat_bildirim">Yaklaşık konumla ezan vakitleri güncelleniyor.</string>
+    <string name="seyahat_baslat">Başlat</string>
+    <string name="seyahat_kapat">Durdur</string>
+    <string name="seyahat_aciklama">Seyahat sırasında ekran kapalıyken de yaklaşık konumunuz kullanılır. Bölge koordinatları AlAdhan hizmetine gönderilir; internet yoksa cihaz hesabı sürer. Bildirimden veya bu ekrandan durdurabilirsiniz. Bildirim izni gerekir; izin verdikten sonra yeniden Başlat seçeneğine dokunun.</string>
+    <string name="seyahat_hata">Seyahat modu başlatılamadı. Konum ve bildirim izinlerini kontrol edin.</string>
 </resources>

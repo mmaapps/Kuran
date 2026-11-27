@@ -83,6 +83,22 @@ fun EzanVaktiEkrani(git:(Ekran)->Unit) {
     val rev by VakitAyarlari.degisim.collectAsState()
     val konum=remember(rev){VakitAyarlari.konum(c)}
     var konumAciklama by remember { mutableStateOf(false) }
+    var seyahatAciklama by remember { mutableStateOf(false) }
+    val seyahat by SeyahatServisi.aktif.collectAsState()
+    val seyahatHata by SeyahatServisi.hata.collectAsState()
+    val seyahatBildirimIzin=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){}
+    if(seyahatAciklama) androidx.compose.material3.AlertDialog(
+        onDismissRequest={seyahatAciklama=false},
+        title={Text(stringResource(R.string.seyahat_baslik))},
+        text={Text(stringResource(R.string.seyahat_aciklama))},
+        confirmButton={androidx.compose.material3.TextButton(onClick={
+            seyahatAciklama=false
+            if(Build.VERSION.SDK_INT>=33 && ContextCompat.checkSelfPermission(c,Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)
+                seyahatBildirimIzin.launch(Manifest.permission.POST_NOTIFICATIONS)
+            else SeyahatServisi.baslat(c)
+        }){Text(stringResource(R.string.seyahat_baslat))}},
+        dismissButton={androidx.compose.material3.TextButton(onClick={seyahatAciklama=false}){Text(stringResource(R.string.kapat))}}
+    )
     val konumIzin=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){
         VakitAyarlari.izinYenilendi()
     }
@@ -224,6 +240,18 @@ fun EzanVaktiEkrani(git:(Ekran)->Unit) {
             Spacer(Modifier.height(6.dp))
             VY(stringResource(if(CevrimiciVakitler.oku(c,konum,seciliGun)!=null)R.string.vakit_cevrimici_notu else R.string.vakit_hesap_notu),11.5f,r.ikincil)
             if(!VakitAyarlari.konumBelirlendi(c)) VY(stringResource(R.string.vakit_varsayilan_konum),11.5f,r.ikincil)
+            Row(Modifier.fillMaxWidth().heightIn(min=56.dp).clickable(role=Role.Button){
+                if(seyahat)SeyahatServisi.kapat(c)
+                else if(!KonumTakip.izin(c))konumAciklama=true
+                else seyahatAciklama=true
+            }.padding(vertical=8.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(8.dp)){
+                Column(Modifier.weight(1f)){
+                    VY(stringResource(R.string.seyahat_baslik),14.5f,r.metin,FontWeight.Bold)
+                    VY(stringResource(if(seyahat)R.string.seyahat_aktif else R.string.seyahat_pasif),12f,r.ikincil)
+                }
+                VY(stringResource(if(seyahat)R.string.seyahat_kapat else R.string.seyahat_baslat),12f,r.aktif,FontWeight.ExtraBold)
+            }
+            if(seyahatHata) VY(stringResource(R.string.seyahat_hata),12f,r.ikincil)
             if(!tamAlarm) {
                 // Sistem izni açıklaması: kullanıcı onayı olmadan ayar ekranı açılmaz.
                 Text(stringResource(R.string.vakit_alarm_izin),modifier=Modifier.fillMaxWidth()

@@ -22,11 +22,14 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.util.Locale
 import kotlin.math.round
 
-/** Yalnız ön planda; izin verilmeyen konum ağa gönderilmez. */
+/** Görünür ekran veya kullanıcının başlattığı seyahat hizmeti; izin yoksa veri ağa gönderilmez. */
 object KonumTakip {
+    private val tekTakip=Mutex()
     fun izin(c:Context)=ContextCompat.checkSelfPermission(c,Manifest.permission.ACCESS_COARSE_LOCATION)==PackageManager.PERMISSION_GRANTED
     private fun konumlar(c:Context)=callbackFlow<Location>{
         val lm=c.getSystemService(LocationManager::class.java)
@@ -59,7 +62,7 @@ object KonumTakip {
             EzanZamanlayici.kur(c,enlem,boylam)
         }
     }
-    suspend fun izle(c:Context)=coroutineScope {
+    suspend fun izle(c:Context)=tekTakip.withLock { coroutineScope {
         if(!izin(c))return@coroutineScope
         launch { konumlar(c).collect { kaydet(c,it) } }
         launch {
@@ -68,13 +71,14 @@ object KonumTakip {
                     val k=VakitAyarlari.konum(c)
                     if(CevrimiciVakitler.yenile(c,k)){
                         VakitAyarlari.yenilendi()
-                        EzanZamanlayici.kur(c,k.enlem,k.boylam)
+                        val guncel=VakitAyarlari.konum(c)
+                        EzanZamanlayici.kur(c,guncel.enlem,guncel.boylam)
                     }
                 }
                 delay(60_000)
             }
         }
-    }
+    } }
 }
 
 @Composable
@@ -82,9 +86,10 @@ fun KonumIzleme(){
     val c=LocalContext.current.applicationContext
     val lifecycle=LocalLifecycleOwner.current.lifecycle
     val rev by VakitAyarlari.izinDegisimi.collectAsState()
-    LaunchedEffect(lifecycle,rev){
+    val seyahat by SeyahatServisi.aktif.collectAsState()
+    LaunchedEffect(lifecycle,rev,seyahat){
         lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
-            if(KonumTakip.izin(c))KonumTakip.izle(c)
+            if(!seyahat&&KonumTakip.izin(c))KonumTakip.izle(c)
         }
     }
 }

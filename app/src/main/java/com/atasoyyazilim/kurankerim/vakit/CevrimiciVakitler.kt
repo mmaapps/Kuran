@@ -9,6 +9,7 @@ import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.withContext
 
 /** AlAdhan Türkiye hesap yöntemi; resmî Diyanet takvimi değildir. Yaklaşık koordinatlar. */
@@ -35,6 +36,8 @@ object CevrimiciVakitler {
         val aylar=(-3L..3L).map { YearMonth.from(tarih.plusDays(it)) }.distinct()
         try {
             for(ay in aylar) {
+                if(!KonumTakip.izin(c))return@withContext false
+                kotlinx.coroutines.currentCoroutineContext().ensureActive()
                 val tz=URLEncoder.encode(zone.id,"UTF-8")
                 val url="https://api.aladhan.com/v1/calendar/${ay.year}/${ay.monthValue}?latitude=${k.enlem}&longitude=${k.boylam}&method=13&school=0&timezonestring=$tz"
                 val conn=URL(url).openConnection() as HttpURLConnection
@@ -69,7 +72,7 @@ object CevrimiciVakitler {
             }
             check((-3L..3L).all { takvim.has(tarih.plusDays(it).toString()) })
             val simdiki=VakitAyarlari.konum(c)
-            if(anahtar(simdiki,ZoneId.systemDefault())!=id)return@withContext false
+            if(!KonumTakip.izin(c)||anahtar(simdiki,ZoneId.systemDefault())!=id)return@withContext false
             p.edit().putString("konum",id).putString("takvim",takvim.toString()).putLong("son",System.currentTimeMillis()).apply()
             true
         } catch(e:Exception) {
