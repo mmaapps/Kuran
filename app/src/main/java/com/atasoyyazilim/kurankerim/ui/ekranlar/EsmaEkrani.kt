@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -95,8 +96,9 @@ fun EsmaEkrani(geri:()->Unit){
                 Modifier.padding(end=10.dp),fontFamily=Manrope,fontSize=12.5.sp,fontWeight=FontWeight.Bold,color=r.ikincil)
         }
         if(isim!=null){
+            val ton=OgrenmeRenkleri.kart(isim.no)
             Box(Modifier.fillMaxWidth().padding(start=16.dp,end=16.dp,top=4.dp)
-                .clip(RoundedCornerShape(22.dp)).background(Renk.YesilKoyu)){
+                .clip(RoundedCornerShape(22.dp)).background(Brush.linearGradient(listOf(ton.zemin,Renk.Kagit))).border(1.dp,ton.kenar,RoundedCornerShape(22.dp))){
                 Canvas(Modifier.matchParentSize()){
                     val f=150.dp.toPx()/48f
                     translate(-40.dp.toPx(),size.height-100.dp.toPx()){
@@ -105,30 +107,30 @@ fun EsmaEkrani(geri:()->Unit){
                             listOf(30f to 18f,46f to 24f,30f to 30f,24f to 46f,18f to 30f,2f to 24f,18f to 18f).forEach{(a,b)->lineTo(a*f,b*f)}
                             close()
                         }
-                        drawPath(p,Renk.Altin.copy(alpha=.12f),style=Stroke(f))
+                        drawPath(p,ton.vurgu.copy(alpha=.13f),style=Stroke(f))
                         rotate(45f,Offset(24*f,24*f)){
-                            drawRect(Renk.Altin.copy(alpha=.12f),Offset(14*f,14*f),Size(20*f,20*f),style=Stroke(f))
+                            drawRect(ton.vurgu.copy(alpha=.13f),Offset(14*f,14*f),Size(20*f,20*f),style=Stroke(f))
                         }
                     }
                 }
                 Column(Modifier.fillMaxWidth().padding(18.dp),horizontalAlignment=Alignment.CenterHorizontally){
                     Row(Modifier.fillMaxWidth(),horizontalArrangement=Arrangement.SpaceBetween,verticalAlignment=Alignment.CenterVertically){
-                        Text(stringResource(R.string.esma_isim_no,isim.no),fontFamily=Manrope,fontSize=12.sp,letterSpacing=1.2.sp,fontWeight=FontWeight.ExtraBold,color=Renk.Altin)
-                        Box(Modifier.size(44.dp).clip(CircleShape).background(Renk.Altin)
+                        Text(stringResource(R.string.esma_isim_no,isim.no),fontFamily=Manrope,fontSize=12.sp,letterSpacing=1.2.sp,fontWeight=FontWeight.ExtraBold,color=ton.vurgu)
+                        Box(Modifier.size(44.dp).clip(CircleShape).background(ton.vurgu)
                             .clickable(role=Role.Button){
                                 // Arapça metin TTS'ye verilmez. Yalnız Türkçe okunuş ve anlam.
                                 if(sesHazir)okuyucu?.oku(isim.okunus+". "+isim.anlam)else sesEksik=true
                             }.semantics{contentDescription=c.getString(R.string.esma_dinle)},contentAlignment=Alignment.Center){
                             Canvas(Modifier.size(15.dp)){
                                 val p=Path().apply{moveTo(size.width*7/24,size.height*5/24);lineTo(size.width*19/24,size.height/2);lineTo(size.width*7/24,size.height*19/24);close()}
-                                drawPath(p,Renk.YesilKoyu)
+                                drawPath(p,Renk.Beyaz)
                             }
                         }
                     }
-                    Text(isim.arapca,Modifier.fillMaxWidth(),style=TextStyle(fontFamily=AmiriQuran,fontSize=50.sp,lineHeight=80.sp,textDirection=TextDirection.Rtl,textAlign=TextAlign.Center,color=Renk.AltinAcik))
-                    Text(isim.okunus,fontFamily=Manrope,fontSize=22.sp,fontWeight=FontWeight.ExtraBold,color=Renk.Beyaz,textAlign=TextAlign.Center)
+                    Text(isim.arapca,Modifier.fillMaxWidth(),style=TextStyle(fontFamily=AmiriQuran,fontSize=56.sp,lineHeight=86.sp,textDirection=TextDirection.Rtl,textAlign=TextAlign.Center,color=ton.vurgu))
+                    Text(isim.okunus,fontFamily=Manrope,fontSize=22.sp,fontWeight=FontWeight.ExtraBold,color=Renk.YesilKoyu,textAlign=TextAlign.Center)
                     Spacer(Modifier.height(4.dp))
-                    Text(isim.anlam,fontFamily=Manrope,fontSize=14.sp,lineHeight=21.sp,color=Renk.KoyuMetin,textAlign=TextAlign.Center)
+                    Text(isim.anlam,fontFamily=Manrope,fontSize=14.sp,lineHeight=21.sp,color=Renk.MetinIkincil,textAlign=TextAlign.Center)
                 }
             }
             Spacer(Modifier.height(14.dp))
@@ -137,16 +139,20 @@ fun EsmaEkrani(geri:()->Unit){
                 horizontalArrangement=Arrangement.spacedBy(8.dp),verticalArrangement=Arrangement.spacedBy(8.dp)){
                 items(liste,key={it.no}){n->
                     val aktif=n.no==isim.no
+                    val renk=OgrenmeRenkleri.kart(n.no)
                     val shape=RoundedCornerShape(16.dp)
-                    Column(Modifier.heightIn(min=92.dp).clip(shape)
-                        .background(if(aktif)Renk.VurguAcik else r.kart)
-                        .border(1.5.dp,if(aktif)Renk.AltinKoyu else r.kenar,shape)
+                    Column(Modifier.heightIn(min=132.dp).clip(shape)
+                        .background(renk.zemin)
+                        .border(if(aktif)2.5.dp else 1.dp,if(aktif)renk.vurgu else renk.kenar,shape)
                         .selectable(aktif,role=Role.Button){okuyucu?.durdur();secili=n.no}
                         .padding(4.dp),horizontalAlignment=Alignment.CenterHorizontally,
                         verticalArrangement=Arrangement.spacedBy(2.dp,Alignment.CenterVertically)){
-                        Text(n.no.toString(),fontFamily=Manrope,fontSize=10.5.sp,fontWeight=FontWeight.ExtraBold,color=if(aktif)Renk.AltinMetin else r.altinMetin)
-                        Text(n.arapca,style=TextStyle(fontFamily=AmiriQuran,fontSize=22.sp,lineHeight=33.sp,color=if(aktif)Renk.YesilKoyu else r.baslik,textDirection=TextDirection.Rtl,textAlign=TextAlign.Center))
-                        Text(n.okunus,fontFamily=Manrope,fontSize=12.sp,fontWeight=FontWeight.ExtraBold,color=if(aktif)Renk.Metin else r.metin,textAlign=TextAlign.Center)
+                        Box(Modifier.sizeIn(minWidth=24.dp,minHeight=22.dp).background(renk.kenar,CircleShape).padding(horizontal=4.dp),contentAlignment=Alignment.Center){
+                            Text(n.no.toString(),fontFamily=Manrope,fontSize=10.5.sp,fontWeight=FontWeight.ExtraBold,color=renk.vurgu)
+                        }
+                        Text(n.arapca,style=TextStyle(fontFamily=AmiriQuran,fontSize=25.sp,lineHeight=38.sp,color=renk.vurgu,textDirection=TextDirection.Rtl,textAlign=TextAlign.Center))
+                        Text(n.okunus,fontFamily=Manrope,fontSize=12.sp,fontWeight=FontWeight.ExtraBold,color=Renk.Metin,textAlign=TextAlign.Center)
+                        Text(n.anlam,fontFamily=Manrope,fontSize=10.5.sp,lineHeight=14.sp,color=Renk.MetinIkincil,maxLines=2,overflow=androidx.compose.ui.text.style.TextOverflow.Ellipsis,textAlign=TextAlign.Center)
                     }
                 }
                 item(span={GridItemSpan(maxLineSpan)}){

@@ -7,6 +7,7 @@ import com.atasoyyazilim.kurankerim.ui.ekranlar.NamazEkrani
 import com.atasoyyazilim.kurankerim.ui.ekranlar.KibleEkrani
 import com.atasoyyazilim.kurankerim.ui.ekranlar.ZikirmatikEkrani
 import com.atasoyyazilim.kurankerim.ui.ekranlar.EsmaEkrani
+import com.atasoyyazilim.kurankerim.ui.ekranlar.ElifBaEkrani
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -49,6 +50,8 @@ fun GezinmeGrafigi(navController: NavHostController = rememberNavController(), g
                     ZikirmatikEkrani(geri={navController.popBackStack()})
                 } else if(ekran==Ekran.ESMA) {
                     EsmaEkrani(geri={navController.popBackStack()})
+                } else if(ekran==Ekran.ELIFBA) {
+                    ElifBaEkrani(geri={navController.popBackStack()})
                 } else TasarimBekleyenEkran(
                     ekran = ekran,
                     guncellemeKontrol = guncellemeKontrol,

@@ -174,4 +174,15 @@
     <string name="esma_dinle">İsmi dinle (Türkçe okunuşu ve anlamı)</string>
     <string name="esma_tam_liste">Kaydırdıkça 99 ismin tamamı yüklenir</string>
     <string name="esma_eksik_liste">%1$d isim hazır. Kalan isimler içerik kontrolü bekliyor.</string>
+    <string name="elifba_baslik">Elif-Ba</string>
+    <string name="elifba_harfler">Harfler · %1$d</string>
+    <string name="elifba_birlesir">Sağdaki ve soldaki harfe bitişir</string>
+    <string name="elifba_birlesmez">Sadece sağındaki harfe bitişir</string>
+    <string name="elifba_bicimler">başta · ortada · sonda</string>
+    <string name="elifba_dinle">Harfin sesini dinle</string>
+    <string name="elifba_ses_yok">Bu harfin izinli ses kaydı henüz yok.</string>
+    <string name="elifba_yukleniyor">Harf sesi hazırlanıyor…</string>
+    <string name="elifba_baslatildi">Harf sesi başlatıldı.</string>
+    <string name="elifba_ses_hata">Harf sesi oynatılamadı.</string>
+    <string name="elifba_dokun">Bir harfe dokun, sesini dinle</string>
 </resources>
