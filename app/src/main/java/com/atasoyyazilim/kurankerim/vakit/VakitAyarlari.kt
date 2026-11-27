@@ -1,6 +1,9 @@
 package com.atasoyyazilim.kurankerim.vakit
 
 import android.content.Context
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 data class Konum(val enlem: Double, val boylam: Double, val ad: String)
 
@@ -10,6 +13,13 @@ data class Konum(val enlem: Double, val boylam: Double, val ad: String)
  * veya yaklaşık konum izni verir. Seçim yapılana kadar İstanbul kullanılır.
  */
 object VakitAyarlari {
+    private val _degisim=MutableStateFlow(0L)
+    val degisim=_degisim.asStateFlow()
+    private val _izinDegisimi=MutableStateFlow(0L)
+    val izinDegisimi=_izinDegisimi.asStateFlow()
+    fun yenilendi(){_degisim.update{it+1}}
+    fun izinYenilendi(){_izinDegisimi.update{it+1}}
+    fun konumBelirlendi(c:Context)=sp(c).contains("enlem")
     private fun sp(c: Context) = c.getSharedPreferences("vakit_ayarlari", Context.MODE_PRIVATE)
 
     fun konum(c: Context): Konum {
@@ -27,6 +37,7 @@ object VakitAyarlari {
             .putString("boylam", k.boylam.toString())
             .putString("ad", k.ad)
             .apply()
+        yenilendi()
     }
 
     /** EzanVakti.dc.html: her vakit satırındaki zil düğmesi. */

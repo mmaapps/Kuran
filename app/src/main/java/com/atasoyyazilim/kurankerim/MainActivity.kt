@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.content.Intent
 import androidx.compose.runtime.mutableLongStateOf
 import com.atasoyyazilim.kurankerim.ses.EzanServisi
+import com.atasoyyazilim.kurankerim.vakit.KonumIzleme
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             // TODO(Ayarlar.dc.html): tema seçimi DataStore'dan okunacak (Açık / Gece / Otomatik)
             KuranTema {
+                KonumIzleme()
                 GuncellemeKontrolu { kontrol -> GezinmeGrafigi(guncellemeKontrol = kontrol, ezanAcIstegi=ezanAcIstegi.longValue) }
             }
         }

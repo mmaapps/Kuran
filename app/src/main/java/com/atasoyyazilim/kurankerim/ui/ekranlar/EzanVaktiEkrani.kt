@@ -80,7 +80,23 @@ private fun VY(metin:String,boyut:Float,renk:Color,kalin:FontWeight=FontWeight.N
 fun EzanVaktiEkrani(git:(Ekran)->Unit) {
     val c=LocalContext.current
     val r=LocalTemaRenkleri.current
-    val konum=VakitAyarlari.konum(c)
+    val rev by VakitAyarlari.degisim.collectAsState()
+    val konum=remember(rev){VakitAyarlari.konum(c)}
+    var konumAciklama by remember { mutableStateOf(false) }
+    val konumIzin=rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()){
+        VakitAyarlari.izinYenilendi()
+    }
+    if(konumAciklama) androidx.compose.material3.AlertDialog(
+        onDismissRequest={konumAciklama=false},
+        title={Text(stringResource(R.string.vakit_konum_baslik))},
+        text={Text(stringResource(R.string.vakit_konum_aciklama))},
+        confirmButton={androidx.compose.material3.TextButton(onClick={
+            konumAciklama=false
+            if(!KonumTakip.izin(c))konumIzin.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+            else VakitAyarlari.izinYenilendi()
+        }){Text(stringResource(R.string.vakit_konum_onay))}},
+        dismissButton={androidx.compose.material3.TextButton(onClick={konumAciklama=false}){Text(stringResource(R.string.kapat))}}
+    )
     var gecikme by remember { mutableIntStateOf(VakitAyarlari.sabahEzaniGecikmeDk(c)) }
     val ziller=remember { mutableStateMapOf<Vakit,Boolean>().apply { Vakit.entries.forEach { put(it,VakitAyarlari.ezanAcik(c,it)) } } }
     val durum=remember { mutableStateMapOf(
@@ -119,9 +135,9 @@ fun EzanVaktiEkrani(git:(Ekran)->Unit) {
     val bugun=simdi.atZone(bolge).toLocalDate()
     var seciliGun by remember(bugun) { mutableStateOf(bugun) }
     val gunler=remember(bugun) { (-3L..3L).map { bugun.plusDays(it) } }
-    val seciliVakitler=remember(seciliGun,konum) { VakitHesaplayici.gunluk(konum.enlem,konum.boylam,seciliGun) }
-    val ezanlar=remember(bugun,konum,gecikme) {
-        (-1L..1L).flatMap { g -> VakitHesaplayici.gunluk(konum.enlem,konum.boylam,bugun.plusDays(g)).toList() }
+    val seciliVakitler=remember(seciliGun,konum,rev) { VakitHesaplayici.gunluk(c,konum.enlem,konum.boylam,seciliGun) }
+    val ezanlar=remember(bugun,konum,gecikme,rev) {
+        (-1L..1L).flatMap { g -> VakitHesaplayici.gunluk(c,konum.enlem,konum.boylam,bugun.plusDays(g)).toList() }
             .filter { it.first!=Vakit.GUNES }.map { (v,t) -> v to EzanZamanlayici.ezanZamani(c,v,t) }.sortedBy { it.second }
     }
     val sonraki=ezanlar.firstOrNull { it.second.isAfter(simdi) }
@@ -138,8 +154,7 @@ fun EzanVaktiEkrani(git:(Ekran)->Unit) {
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(start=16.dp,end=16.dp,top=16.dp,bottom=24.dp)) {
             Row(Modifier.fillMaxWidth(),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.SpaceBetween) {
                 VY(stringResource(R.string.vakit_baslik),26f,r.baslik,FontWeight.ExtraBold)
-                // Özgün şehir listesi henüz sağlanmadı. Yanlış konum seçimi yapılmaz.
-                Box(Modifier.heightIn(min=44.dp),contentAlignment=Alignment.Center) {
+                Box(Modifier.heightIn(min=44.dp).clickable(role=Role.Button){konumAciklama=true},contentAlignment=Alignment.Center) {
                     Row(Modifier.height(40.dp).background(r.kart,RoundedCornerShape(20.dp)).border(1.dp,r.kenar,RoundedCornerShape(20.dp)).padding(horizontal=12.dp),
                         horizontalArrangement=Arrangement.spacedBy(6.dp),verticalAlignment=Alignment.CenterVertically) {
                         Icon(KonumIkon,null,Modifier.size(15.dp),tint=r.baslik)
@@ -207,7 +222,8 @@ fun EzanVaktiEkrani(git:(Ekran)->Unit) {
                 }
             }
             Spacer(Modifier.height(6.dp))
-            VY(stringResource(R.string.vakit_hesap_notu),11.5f,r.ikincil)
+            VY(stringResource(if(CevrimiciVakitler.oku(c,konum,seciliGun)!=null)R.string.vakit_cevrimici_notu else R.string.vakit_hesap_notu),11.5f,r.ikincil)
+            if(!VakitAyarlari.konumBelirlendi(c)) VY(stringResource(R.string.vakit_varsayilan_konum),11.5f,r.ikincil)
             if(!tamAlarm) {
                 // Sistem izni açıklaması: kullanıcı onayı olmadan ayar ekranı açılmaz.
                 Text(stringResource(R.string.vakit_alarm_izin),modifier=Modifier.fillMaxWidth()

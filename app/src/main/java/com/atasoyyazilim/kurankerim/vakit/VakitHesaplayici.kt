@@ -1,5 +1,6 @@
 package com.atasoyyazilim.kurankerim.vakit
 
+import android.content.Context
 import com.batoulapps.adhan.CalculationMethod
 import com.batoulapps.adhan.CalculationParameters
 import com.batoulapps.adhan.Coordinates
@@ -47,6 +48,10 @@ object VakitHesaplayici {
             Vakit.YATSI to pt.isha.toInstant()
         )
     }
+
+    /** Ekranlar ve alarmlar aynı çevrimiçi önbelleği kullanır, yoksa yerel hesap. */
+    fun gunluk(c:Context,enlem:Double,boylam:Double,tarih:LocalDate):Map<Vakit,Instant> =
+        CevrimiciVakitler.oku(c,Konum(enlem,boylam,""),tarih) ?: gunluk(enlem,boylam,tarih)
 
     /** Bugün ve yarının vakitleri, zaman sırasıyla. */
     fun ikiGunluk(enlem: Double, boylam: Double, bolge: ZoneId = ZoneId.systemDefault()): List<Pair<Vakit, Instant>> {

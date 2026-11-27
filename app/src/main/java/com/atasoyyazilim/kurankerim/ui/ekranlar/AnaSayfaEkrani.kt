@@ -139,13 +139,14 @@ fun AnaSayfaEkrani(git: (Ekran) -> Unit) {
     }
     val bolge = ZoneId.systemDefault()
     val tarih = simdi.atZone(bolge).toLocalDate()
-    val sehir = VakitAyarlari.konum(c)
+    val vakitRev by VakitAyarlari.degisim.collectAsState()
+    val sehir = remember(vakitRev){VakitAyarlari.konum(c)}
     val gecikme = VakitAyarlari.sabahEzaniGecikmeDk(c)
-    val vakitler = remember(tarih, sehir) {
-        VakitHesaplayici.gunluk(sehir.enlem, sehir.boylam, tarih)
+    val vakitler = remember(tarih, sehir,vakitRev) {
+        VakitHesaplayici.gunluk(c,sehir.enlem, sehir.boylam, tarih)
     }
-    val ezanlar = remember(tarih, sehir, gecikme) {
-        (vakitler.toList() + VakitHesaplayici.gunluk(sehir.enlem, sehir.boylam, tarih.plusDays(1)).toList())
+    val ezanlar = remember(tarih, sehir, gecikme,vakitRev) {
+        (vakitler.toList() + VakitHesaplayici.gunluk(c,sehir.enlem, sehir.boylam, tarih.plusDays(1)).toList())
             .filter { it.first != Vakit.GUNES }
             .map { (v,t) -> v to EzanZamanlayici.ezanZamani(c, v, t) }.sortedBy { it.second }
     }

@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Build
 import com.atasoyyazilim.kurankerim.bildirim.Bildirimler
 import java.time.Instant
+import java.time.LocalDate
 
 /**
  * Ezan ve "5 dakika kaldı" alarmlarını kurar.
@@ -36,7 +37,8 @@ object EzanZamanlayici {
 
     /** Sıradaki ezanlar (Güneş hariç), ezan zamanına göre sıralı. */
     fun siradakiEzanlar(context: Context, enlem: Double, boylam: Double, simdi: Instant = Instant.now()): List<Pair<Vakit, Instant>> =
-        VakitHesaplayici.ikiGunluk(enlem, boylam)
+        listOf(LocalDate.now().minusDays(1),LocalDate.now(),LocalDate.now().plusDays(1))
+            .flatMap{VakitHesaplayici.gunluk(context,enlem,boylam,it).toList()}
             .filter { it.first != Vakit.GUNES }
             .map { (vakit, zaman) -> vakit to ezanZamani(context, vakit, zaman) }
             .filter { it.second.isAfter(simdi) }

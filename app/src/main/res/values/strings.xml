@@ -115,4 +115,10 @@
     <string name="ezan_ani_okunan">ŞU AN OKUNAN</string>
     <string name="ezan_ani_ayet">EZANDAN SONRA · KISA ÂYET</string>
     <string name="ezan_ani_sustur">Ezanı sustur</string>
+    <string name="vakit_otomatik_konum">Otomatik konum</string>
+    <string name="vakit_konum_baslik">Otomatik ezan konumu</string>
+    <string name="vakit_konum_aciklama">İzin verirseniz uygulama açıkken yaklaşık konumunuz belirlenir. Yuvarlanmış bölge koordinatları internet üzerinden AlAdhan hizmetine namaz vakitlerini hesaplamak için gönderilir. İnternet yoksa cihaz hesabı kullanılır. Arka planda konum izlenmez. İzni Android ayarlarından kapatabilirsiniz.</string>
+    <string name="vakit_konum_onay">Konumu etkinleştir</string>
+    <string name="vakit_cevrimici_notu">AlAdhan çevrimiçi takvimi (Türkiye hesap yöntemi). Resmî Diyanet takviminden farklı olabilir.</string>
+    <string name="vakit_varsayilan_konum">İstanbul varsayılan konumudur. Otomatik konum için şehir düğmesine dokunun.</string>
 </resources>
