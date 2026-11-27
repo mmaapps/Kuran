@@ -108,4 +108,11 @@
     <string name="guncelleme_yukle">Güncellemeyi yükle</string>
     <string name="guncelleme_sonra">Daha sonra</string>
     <string name="vakit_alarm_izin">Tam zamanlı ezan için alarmlar ve hatırlatıcılar iznini aç. İzin yoksa sistem alarmı geciktirebilir.</string>
+    <string name="ezan_ani_etiket">EZAN-I MUHAMMEDÎ</string>
+    <string name="ezan_ani_baslik">%1$s Ezanı</string>
+    <string name="ezan_ani_asama_ezan">1 · Ezan</string>
+    <string name="ezan_ani_asama_ayet">2 · Kısa âyet</string>
+    <string name="ezan_ani_okunan">ŞU AN OKUNAN</string>
+    <string name="ezan_ani_ayet">EZANDAN SONRA · KISA ÂYET</string>
+    <string name="ezan_ani_sustur">Ezanı sustur</string>
 </resources>

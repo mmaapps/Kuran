@@ -21,13 +21,14 @@ import com.atasoyyazilim.kurankerim.ui.theme.Renk
 fun BosDurum(
     ikon: ImageVector,
     modifier: Modifier = Modifier,
-    metin: String = stringResource(R.string.bos_durum)
+    metin: String = stringResource(R.string.bos_durum),
+    renk: androidx.compose.ui.graphics.Color = Renk.MetinIkincil
 ) {
     Column(modifier.fillMaxWidth().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Icon(ikon, null, tint = Renk.AltinMetin)
+        Icon(ikon, null, tint = if (renk == Renk.MetinIkincil) Renk.AltinMetin else renk)
         Text(metin, fontFamily = Manrope, fontSize = 15.sp, fontWeight = FontWeight.Normal,
-            textAlign = TextAlign.Center, color = Renk.MetinIkincil)
+            textAlign = TextAlign.Center, color = renk)
     }
 }

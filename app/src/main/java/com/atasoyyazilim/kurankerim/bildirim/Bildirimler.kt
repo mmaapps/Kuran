@@ -117,7 +117,10 @@ object Bildirimler {
             .setContentTitle(context.getString(R.string.ezan_okunuyor, context.getString(vakit.adRes)))
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setOngoing(true)
-            .setContentIntent(uygulamayiAc(context))
+            .setContentIntent(PendingIntent.getActivity(context,4,
+                Intent(context,MainActivity::class.java).setAction(EzanServisi.EYLEM_AC)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP),
+                PendingIntent.FLAG_IMMUTABLE))
             .addAction(0, context.getString(R.string.ezan_sustur), sustur)
             .build()
     }
