@@ -167,4 +167,11 @@
     <string name="zikir_bugun">Bugün toplam</string>
     <string name="zikir_toplam">%1$d zikir · %2$d tur</string>
     <string name="zikir_titresim">Her dokunuşta hafif titreşim · Hedefe ulaşınca uzun titreşim</string>
+    <string name="esma_baslik">Esmâü\'l-Hüsnâ</string>
+    <string name="esma_tam_sayi">99 isim</string>
+    <string name="esma_mevcut_sayi">%1$d / 99 isim</string>
+    <string name="esma_isim_no">%1$d. İSİM</string>
+    <string name="esma_dinle">İsmi dinle (Türkçe okunuşu ve anlamı)</string>
+    <string name="esma_tam_liste">Kaydırdıkça 99 ismin tamamı yüklenir</string>
+    <string name="esma_eksik_liste">%1$d isim hazır. Kalan isimler içerik kontrolü bekliyor.</string>
 </resources>
