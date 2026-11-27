@@ -126,3 +126,7 @@ Seyahat CI 46030245042 (iş 140611910057): test 38s, AAB 16s, artifact 152136477
 
 ## 2026-11-27 — Kıble pusulası
 Namaz CI 46030741158 (iş 140613581338) test 30s, AAB 14s, artifact 15213937924 başarılı. Özgün ZIP Kible.dc.html, TASARIM_KURALLARI ve 01_CODEX_TALIMATLARI doğrudan okundu. 300 dp kadran, 72 çizgi, 40 dp Kâbe simgesi, 250 ms yön geçişi, 56 dp durum kartı; tasarımdaki deneme kaydırıcısı yerine gerçek rotation vector veya ivmeölçer/manyetometre. Manyetik sapma GeomagneticField ile düzeltilir, ekran yönü hesaba katılır, sensör sadece RESUMED durumunda çalışır. ±4° yeşil ve girişte tek titreşim; geçersiz konum, düşük doğruluk ve eğimde başarı gösterilmez. 4 JVM test eklendi (açı sarımı, tolerans, mesafe, yön). SORU: tasarımda olmayan sensör/konum hata durumları için gerekli kısa durum metinleri eklendi; titreşim 100 ms seçildi, gerçek cihaz doğrulanmadı. Varsayılan İstanbul açısı gösterilebilir ama konum doğrulanmadan başarı verilmez. Yeni CI ve görsel karşılaştırma bekliyor; kararlı yayın yok.
+
+
+## 2026-11-27 — Kıble CI doğrulaması
+Kıble CI 46031142815 (iş 140614949097, commit ead03da6): gerçek loglarda birim test/derleme 36s, sonraki derleme 15s, son Gradle işlemi 3s başarılı. Gerçek cihaz sensör ve görsel doğrulaması bekliyor. Kararlı yayın yok. Kaza ekranı için özgün ZIP tasarımı tekrar erişilebilir olmadan arayüz değiştirilmez.
