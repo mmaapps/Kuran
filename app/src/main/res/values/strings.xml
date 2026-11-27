@@ -185,4 +185,7 @@
     <string name="elifba_baslatildi">Harf sesi başlatıldı.</string>
     <string name="elifba_ses_hata">Harf sesi oynatılamadı.</string>
     <string name="elifba_dokun">Bir harfe dokun, sesini dinle</string>
+    <string name="dualar_baslik">Dualar</string>
+    <string name="dualar_tumu">Tüm dualar</string>
+    <string name="dualar_dinle">Duayı dinle (Türkçe okunuşu ve varsa dua anlamı)</string>
 </resources>
