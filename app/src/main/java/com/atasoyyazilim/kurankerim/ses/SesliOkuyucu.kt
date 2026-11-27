@@ -22,7 +22,9 @@ class SesliOkuyucu(context: Context, private val hazir: (turkceVar: Boolean) -> 
     override fun onInit(durum: Int) {
         if (durum == TextToSpeech.SUCCESS) {
             val sonuc = tts.setLanguage(Locale.forLanguageTag("tr-TR"))
-            turkceVar = sonuc != TextToSpeech.LANG_MISSING_DATA && sonuc != TextToSpeech.LANG_NOT_SUPPORTED
+            // Yalnız cihazda kurulu, ağ gerektirmeyen Türkçe ses.
+            val yerel = tts.voices?.firstOrNull { it.locale.language == "tr" && !it.isNetworkConnectionRequired && !it.features.contains(TextToSpeech.Engine.KEY_FEATURE_NOT_INSTALLED) }
+            turkceVar = sonuc >= TextToSpeech.LANG_AVAILABLE && yerel != null && tts.setVoice(yerel) == TextToSpeech.SUCCESS
         }
         hazir(turkceVar)
     }
@@ -44,6 +46,8 @@ class SesliOkuyucu(context: Context, private val hazir: (turkceVar: Boolean) -> 
     }
 
     fun kapat() {
+        turkceVar=false
+        tts.stop()
         tts.shutdown()
     }
 }

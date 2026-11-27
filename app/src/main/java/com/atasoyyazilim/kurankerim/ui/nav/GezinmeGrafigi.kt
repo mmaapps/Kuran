@@ -3,6 +3,7 @@ package com.atasoyyazilim.kurankerim.ui.nav
 import androidx.compose.runtime.*
 import com.atasoyyazilim.kurankerim.ses.EzanServisi
 import com.atasoyyazilim.kurankerim.ui.ekranlar.EzanAniEkrani
+import com.atasoyyazilim.kurankerim.ui.ekranlar.NamazEkrani
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,6 +38,8 @@ fun GezinmeGrafigi(navController: NavHostController = rememberNavController(), g
                         kapat={navController.navigate(Ekran.ANA.rota){popUpTo(Ekran.ANA.rota){inclusive=false};launchSingleTop=true}},
                         susturSonrasi={navController.navigate(Ekran.VAKITLER.rota){popUpTo(Ekran.ANA.rota){inclusive=false};launchSingleTop=true}}
                     )
+                } else if(ekran==Ekran.NAMAZ) {
+                    NamazEkrani(geri={navController.popBackStack()},kaza={navController.navigate(Ekran.KAZA.rota){launchSingleTop=true}})
                 } else TasarimBekleyenEkran(
                     ekran = ekran,
                     guncellemeKontrol = guncellemeKontrol,

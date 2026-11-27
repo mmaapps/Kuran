@@ -129,4 +129,16 @@
     <string name="seyahat_kapat">Durdur</string>
     <string name="seyahat_aciklama">Seyahat sırasında ekran kapalıyken de yaklaşık konumunuz kullanılır. Bölge koordinatları AlAdhan hizmetine gönderilir; internet yoksa cihaz hesabı sürer. Bildirimden veya bu ekrandan durdurabilirsiniz. Bildirim izni gerekir; izin verdikten sonra yeniden Başlat seçeneğine dokunun.</string>
     <string name="seyahat_hata">Seyahat modu başlatılamadı. Konum ve bildirim izinlerini kontrol edin.</string>
+    <string name="namaz_baslik">Namaz Rehberi</string>
+    <string name="namaz_kaza">Kaza takibi</string>
+    <string name="namaz_abdest">Abdest</string>
+    <string name="namaz_iki_rekat">Namaz (2 rekât)</string>
+    <string name="namaz_cizim">Animasyonlu çizim: %1$s</string>
+    <string name="namaz_sesli_anlat">Sesli anlat</string>
+    <string name="namaz_adim">ADIM %1$d / %2$d</string>
+    <string name="namaz_okunur">OKUNUR</string>
+    <string name="namaz_onceki">‹ Önceki</string>
+    <string name="namaz_sonraki">Sonraki ›</string>
+    <string name="namaz_bastan">Baştan başla</string>
+    <string name="namaz_turkce_ses_yok">Telefon ayarlarından Türkçe ses verisini açın.</string>
 </resources>
