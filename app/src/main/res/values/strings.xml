@@ -141,4 +141,23 @@
     <string name="namaz_sonraki">Sonraki ›</string>
     <string name="namaz_bastan">Baştan başla</string>
     <string name="namaz_turkce_ses_yok">Telefon ayarlarından Türkçe ses verisini açın.</string>
+    <string name="kible_baslik">Kıble Pusulası</string>
+    <string name="kible_konum_acisi">%1$s · Kıble açısı</string>
+    <string name="kible_derece">%1$d°</string>
+    <string name="kible_mesafe">%1$s · Mekke\'ye yaklaşık %2$s km</string>
+    <string name="kible_k">Kuzey</string><string name="kible_kd">Kuzeydoğu</string>
+    <string name="kible_d">Doğu</string><string name="kible_gd">Güneydoğu</string>
+    <string name="kible_g">Güney</string><string name="kible_gb">Güneybatı</string>
+    <string name="kible_b">Batı</string><string name="kible_kb">Kuzeybatı</string>
+    <string name="kible_k_harf">K</string><string name="kible_g_harf">G</string>
+    <string name="kible_d_harf">D</string><string name="kible_b_harf">B</string>
+    <string name="kible_kabe_yonu">Kâbe yönü</string>
+    <string name="kible_dogru">Kıbleye döndünüz</string>
+    <string name="kible_saga">Sağa dön · %1$d°</string>
+    <string name="kible_sola">Sola dön · %1$d°</string>
+    <string name="kible_tavsiye">Doğru sonuç için telefonu düz tut, metal eşyalardan uzak dur. Gerekirse telefonu havada 8 çizerek pusulayı kalibre et.</string>
+    <string name="kible_konum_yok">Vakitler ekranından otomatik konumu etkinleştirin.</string>
+    <string name="kible_sensor_yok">Bu cihazda pusula sensörü kullanılamıyor.</string>
+    <string name="kible_duz">Telefonu düz tut.</string>
+    <string name="kible_kalibre">Pusulayı kalibre et.</string>
 </resources>

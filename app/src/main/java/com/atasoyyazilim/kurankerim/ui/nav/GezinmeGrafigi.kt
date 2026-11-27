@@ -4,6 +4,7 @@ import androidx.compose.runtime.*
 import com.atasoyyazilim.kurankerim.ses.EzanServisi
 import com.atasoyyazilim.kurankerim.ui.ekranlar.EzanAniEkrani
 import com.atasoyyazilim.kurankerim.ui.ekranlar.NamazEkrani
+import com.atasoyyazilim.kurankerim.ui.ekranlar.KibleEkrani
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -40,6 +41,8 @@ fun GezinmeGrafigi(navController: NavHostController = rememberNavController(), g
                     )
                 } else if(ekran==Ekran.NAMAZ) {
                     NamazEkrani(geri={navController.popBackStack()},kaza={navController.navigate(Ekran.KAZA.rota){launchSingleTop=true}})
+                } else if(ekran==Ekran.KIBLE) {
+                    KibleEkrani(geri={navController.popBackStack()})
                 } else TasarimBekleyenEkran(
                     ekran = ekran,
                     guncellemeKontrol = guncellemeKontrol,
